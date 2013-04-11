@@ -16,7 +16,7 @@ General ideas about this project:
 
 Please install [Apache Maven](http://maven.apache.org/) version 3.0.4 or later. Then you can start the project by using the following maven target:
 
-    mvn jboss-as:run
+    mvn -DskipTests=true jboss-as:run
 
 This will download all necessary artefacts to run this project, including JBoss 7. Afterwards you can access the project in your browser you your favourite REST client with the URL [http://localhost:8080/rest-sample/](http://localhost:8080/rest-sample/)
 
@@ -28,7 +28,7 @@ You can look at the raw documents in src/site/apt/ - or you can run the site loc
 
     mvn site:run
 
-and poiting your browser at [http://localhost:8090](http://localhost:8090).
+and pointing your browser at [http://localhost:8090](http://localhost:8090).
 
 ## How to develop changes for these REST samples
 
@@ -49,7 +49,7 @@ There is a project called <tt>rest-samples-soapui-project.xml</tt> in the sub-fo
 
 ### Use your browser and a HTML5/jQuery app
 
-Run the sample i.e. with maven like described above. Brose to [http://localhost:8080/rest-samples](http://localhost:8080/rest-samples). 
+Run the sample i.e. with maven like described above. Brose to [http://localhost:8080/rest-samples](http://localhost:8080/rest-samples).
 
 ### How to run the test cases
 
@@ -59,11 +59,10 @@ At the moment you must have a local installation of JBoss available and the envi
 
 ## Todos
 
-1. provide a very simple example (segment is still too complicate)
-2. **DONE** provide a HTML5 REST client for a simple example
-3. provide a pure JAVA client for a REST service
-4. **STARTED** automatic test cases missing
-5. Make the arquillian tests work without installing JBoss 7 locally first.
+1. provide a pure JAVA client for a REST service
+2. **STARTED** automatic test cases missing
+3. Make the arquillian tests work without installing JBoss 7 locally first.
+4. Add translation JS Frontend
 
 Use Java 32bit to use the HTML visual page editor
 https://issues.jboss.org/browse/JBIDE-2720

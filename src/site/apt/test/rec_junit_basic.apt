@@ -65,9 +65,9 @@ Basic JUnit Testing
     you add a package-info.java in the test source structure in the same package. In this sample project I have used
     an additional sub-package "test" to separate the test classes from the real classes in their name space.
 
-    A simple test class can be found in the source code file <<<SegmentTest.java>>>
+    A simple test class can be found in the source code file <<<TranslationTest.java>>>
 
-%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentTest.java}
+%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/sighting/test/TranslationTest.java}
 
     When adding asserts of any kind, please use the ones that have a String as the first parameter. This allows you to provide a meaningful
     message of what is the expected outcome of the test. This is then also shown when this test fails, and it is an invaluable

@@ -24,11 +24,11 @@ Using Hamcrest Matchers in your tests
 
   Then take the old code:
 
-%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentTest.java}
+%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/sighting/test/TranslationTest.java}
 
   and convert it to Hamcrest matchers
 
-%{snippet|id=junithamcrest2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentHamcrestTest.java}
+%{snippet|id=junithamcrest2|url=file:src/test/java/de/ahus1/model/sighting/test/TranslationHamcrestTest.java}
 
 * Where to learn more about it
 
