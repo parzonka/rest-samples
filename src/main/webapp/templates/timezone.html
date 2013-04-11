@@ -1,0 +1,69 @@
+<h1>Zeitzonen pflegen</h1>
+
+<form class="form-horizontal" data-bind="fadeVisible: timezoneList() == null" id="editForm">
+	<fieldset data-bind="with: timezone">
+		<!-- ko if: timezoneId  -->
+		<legend>Zeitzone bearbeiten</legend>
+		<!-- /ko -->
+		<!-- ko ifnot: timezoneId  -->
+		<legend>Neue Zeitzone</legend>
+		<!-- /ko -->
+
+		<div class="row-fluid">
+
+			<span class="control-group" data-bind="message: $data"></span>
+
+			<div class="control-group">
+				<label class="control-label" for="bezeichnung">Name</label>
+				<div class="controls">
+					<input type="text" id="timezoneName" class="input-large"
+						data-bind="value: timezoneName" />
+				</div>
+			</div>
+		</div>
+		<button type="button" id="save" class="btn-primary btn"
+			data-bind="click: $parent.saveTimezone">Speichern</button>
+
+		<a href="#" class="btn" data-bind="click: $parent.goToMain">Abbrechen</a>
+	</fieldset>
+</form>
+
+<form class="form-horizontal"
+	data-bind="fadeVisible: timezoneList() != null">
+	<fieldset>
+		<legend>Zeitzonen</legend>
+
+		<button id="addButton" type="button" class="btn-primary btn"
+			data-bind="click: goToAdd">Hinzufügen</button>
+
+		<p />
+
+		<div class="row-fluid">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Bezeichnung</th>
+						<th>Aktion</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: timezoneList">
+					<tr>
+						<td data-title="Bezeichnung" data-bind="text: timezoneName" />
+						<td data-title="Aktion">
+							<div class="btn-group">
+								<a class="btn btn-small" href="#" title="Bearbeiten" name="edit"
+									data-bind="click: $parent.goToEdit"> <i class="icon-edit"></i>
+								</a> <a class="btn btn-small" href="#" title="Entfernen"
+									name="delete" data-bind="click: $parent.deleteTimezone"> <i
+									class="icon-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p />
+		</div>
+
+	</fieldset>
+</form>

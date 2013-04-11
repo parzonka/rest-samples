@@ -1,0 +1,34 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="398" measuredH="294" mockupW="319" mockupH="274">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="110" y="197" w="-1" h="-1" measuredW="81" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Speichern</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="206" y="197" w="-1" h="-1" measuredW="85" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Abbrechen</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="110" y="153" w="-1" h="-1" measuredW="38" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Name%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::SubTitle" x="110" y="111" w="-1" h="-1" measuredW="185" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zeitzone%20pflegen</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TextInput" x="164" y="153" w="127" h="-1" measuredW="94" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Europe/Berlin</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="79" y="20" w="319" h="274" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Schiffssichtungen%0Ahttp%3A//...</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

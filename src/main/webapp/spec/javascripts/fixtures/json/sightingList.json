@@ -1,0 +1,4 @@
+[
+{"sightingId":1,"vessel":{"vesselId":1,"vesselName":"Vessel 1"},"sightingTimezone":"Europe/Berlin","sightingDate":"2013-04-19T13:23:00.000"},
+{"sightingId":2,"vessel":{"vesselId":2,"vesselName":"Vessel 2"},"sightingTimezone":"Europe/Berlin","sightingDate":"2013-05-19T13:23:00.000"}
+]

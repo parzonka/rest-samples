@@ -1,0 +1,5 @@
+﻿  * Backend-Validierung
+  * Anzeige im Frontend
+  * automatische Testfälle
+
+  * Tooltips für Hotkeys

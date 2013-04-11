@@ -1,0 +1,21 @@
+/* indicator for required fields */
+form .required label:first-child:after {
+	color: #e32;
+	content: '*';
+	display: inline;
+}
+
+/* valid and invalid labels for jquery.validation */
+form label.valid {
+	display: none;
+}
+
+form label.error {
+}
+
+/* if we use a control group within a table, don't add a margin */
+.form-horizontal td .control-group {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+

@@ -1,0 +1,68 @@
+    ------
+    Maven Site Documentation
+    ------
+    Alexander Schwartz
+    ------
+    12 November 2012
+
+Creating Maven Site Documentation inside a Maven project
+
+%{toc|fromDepth=2}
+
+* What is a Maven Site
+
+    A Maven site is a web site created by Maven from the project's sources. It contains information from the pom.xml, generated information and
+    statistics from the source code and test cases, but also project documentation that is stored i.e. in the APT files below <<<src/site/apt/>>>.
+
+    The menu on the left is structured in the file <<<site.xml>>>.
+
+* Why you should use it
+
+    Think of the Maven generated web site as the place to go for the developers in your team. This should be a place where new developers find
+    starter documentation, and where experienced developers look up reference documentation. The automatically generated reports provide
+    information about the health of your project (i.e. Checkstyle information, FindBugs, etc.)
+
+    When you write your documentation as APT files you can commit them together with your code. When you branch your code, you also branch
+    your documentation. If you would store your documentation in a Wiki, there would be no connection to your code at all.
+
+    If you want to later create PDFs from your APT documentation, you can do so by using the Doxia plugins (although they sometime look a bit crude).
+
+* How to use it
+
+    Please add a new plugin to your project:
+
+%{snippet|id=mvnsite1|url=file:pom.xml}
+
+    Add documentation files below <<<src/site/apt>>>. It is a good practice to store a template file there for new pages to be created.
+    You can borrow one from this project.
+
+    Then you add a <<<src/site/site.xml>>> file to your project like it has been done in this project. This is your site map and will contain
+    all menu items for your project. Whenever you add a page to the APT documentation folder, you will need to link it from the menu
+    by editing this file.
+
+    You can now use the following command to run the site locally:
+
++-----+
+    $ mvn site:run
++-----+
+
+   You can then browse to the site using the following link: {{http://localhost:8090}}.
+
+   You can edit your pages locally and refresh them in your browser to test them before you commit them.
+
+   Other commands are <<<mvn site>>> to create a static site in the target folder, and <<<mvn site:deploy>>> to deploy it to a server
+   where others can access it.
+
+* Where to learn more about it
+
+    You can find the official documentation on how to write APT documents here: {{http://maven.apache.org/doxia/references/apt-format.html}}
+    and here: {{{http://maven.apache.org/doxia/references/doxia-apt.html}}}.
+
+    You can find out more about the Maven Site Plugin here: {{http://maven.apache.org/plugins/maven-site-plugin/}}
+
+* Tips and Tricks
+
+    The generation of a site can be quite slow for the dependency report. This snipped in your <<<pom.xml>>> reduces the amount of information
+    and therefore speeds up the generation considerably.
+
+%{snippet|id=mvnsite2|url=file:pom.xml}

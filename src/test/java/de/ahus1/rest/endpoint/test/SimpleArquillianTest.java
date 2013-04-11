@@ -1,0 +1,43 @@
+package de.ahus1.rest.endpoint.test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import de.ahus1.model.general.Translation;
+
+/**
+ * A first Arquillian test.
+ * 
+ * @author Alexander Schwartz 2012
+ * 
+ */
+@RunWith(Arquillian.class)
+public class SimpleArquillianTest {
+
+  /**
+   * Create a first deployment.
+   * 
+   * @return archive to be deployed
+   */
+  @Deployment
+  public static JavaArchive createDeployment() {
+    return ShrinkWrap.create(JavaArchive.class).addClass(Translation.class)
+        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+  }
+
+  /**
+   * A first sample test without real functionality.
+   */
+  @Test
+  public void shouldCreateGreeting() {
+    assertThat("we need something that just works", true, equalTo(true));
+  }
+}

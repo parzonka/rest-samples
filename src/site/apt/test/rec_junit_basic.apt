@@ -1,0 +1,126 @@
+    ------
+    Basic JUnit Testing
+    ------
+    Alexander Schwartz
+    ------
+    12 November 2012
+
+Basic JUnit Testing
+
+%{toc|fromDepth=2}
+
+* What is JUnit?
+
+    JUnit is a framework for automated tests. These tests are written by developers to test their own code to ensure that
+    their code does what they think it does. These tests are then extended on code reviews, quality assurance, or when
+    problems occur in production and they need to reproduces and fixed (look for "defect driven testing" and "test driven
+    development" to find out more about it).
+
+    JUnit can run small snippets of code over and over again and will report the success or failure as green or rest in
+    statistics. You can run the tests yourself in Eclipse, on the Maven command line, or on your favorite continous
+    integration server.
+
+* Why you should use it
+
+** Why to use automated tests at all
+
+    When you write new code and hand it over to testing and QA, you should have tested it yourself before. Writing a unit
+    test is a nice way of proving that you have done this. When changing someone else's code you can verify by running the
+    JUnit tests from the previous programmer that you didn't break the code. This gives confidence! Of course you follow
+    the boy scout rule to add some more tests yourself, right?
+
+    With a proper test suite in place you can exchange with greater confidence libraries and re-test the system with ease.
+    Therefore writing JUnit tests is an investment in the current release and all future releases. But it also comes at a cost:
+    you'll need to keep your tests clean and green. If test suites fail over a period of time and deteriorate, it is hard
+    (if not impossible) to catch up again and make them "green" again.
+
+    Sometimes JUnit tests help you to understand how a class should be used - just by looking at the existing test suite.
+
+** Why to use JUnit 4
+
+    JUnit 4 is the current actively developed version of JUnit. From JUnit 4 on most of the magic around the code snippets
+    is done using annotations. As you now don't need to use a common base class like in JUnit 3, this makes you a lot more
+    flexible. By using annotations you can run your tests i.e. in parallel. You can use profiles to run some tests only in
+    some environments. If you used Spring contexts in your tests with JUnit 3, be assured that all this functionality is
+    available and well proven in the latest Spring packages to support JUnit 4. Please give it a try!
+
+* How to use it
+
+** Update your pom.xml file
+
+    Please add a new dependency to your project:
+
+%{snippet|id=junitbasic1|url=file:pom.xml}
+
+    And also add a new plugin to your project:
+
+%{snippet|id=junitbasic3|url=file:pom.xml}
+
+    Then create a new folder <<<src/test/java>>>. Here you can use the same package structure like you have done for the packages
+    in <<<src/main/java>>>.
+
+** Write your test cases
+
+    TODO: There is currently a problem that if you add a package-info.java in the main source structure, Eclipse will complain if
+    you add a package-info.java in the test source structure in the same package. In this sample project I have used
+    an additional sub-package "test" to separate the test classes from the real classes in their name space.
+
+    A simple test class can be found in the source code file <<<SegmentTest.java>>>
+
+%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentTest.java}
+
+    When adding asserts of any kind, please use the ones that have a String as the first parameter. This allows you to provide a meaningful
+    message of what is the expected outcome of the test. This is then also shown when this test fails, and it is an invaluable
+    piece of information for the developer to come to fix the JUnit test.
+
+    Please note: JUnit tests need (inline) documentation like every other piece of code.
+
+** Running your tests
+
+*** Running them from within Eclipse
+
+    When you a test class, you can you right-click on the test and choose "Run As | JUnit test". This will compile the code and run the test.
+    This works both on single class level and on package level. Give it a try!
+
+    You will have a view with all successful and failed JUnit tests where you can also reasily re-run tests. You can even debug your tests.
+
+*** Running them from the command line
+
+    You can run your tests from the command line like this:
+
++-----+
+    $ mvn test
++-----+
+
+    After you have run the tests, you will find reports (in XML and plain text) with failed and successful tests in the folder
+    <<<target/surefire-reports>>>. You can open these XML files with Eclipse.
+
+*** Skipping tests when running tests from the command line
+
+   Sometimes it might be necessary to skip your tests - although this usually indicates something else is wrong.
+
+   The following command skips all tests and still packages the application:
+
++----+
+   $ mvn -DskipTests=true package
++----+
+
+* Where to learn more about it
+
+    You can find the official documentation about JUnit on {{http://www.junit.org/}}.
+
+    A tutorial from Lars Vogel on how to write JUnit tests with Eclipse can be found here {{http://www.vogella.com/articles/JUnit/article.html}}.
+
+    You can find out more about the Maven Surefire plugin please visit this site: {{http://maven.apache.org/surefire/maven-surefire-plugin/}}
+
+* Tips and Tricks
+
+    To do asserts JUnit uses static methods. They are intended to be used with static imports - but Eclipse doesn't provide you with
+    context code assist for them. Follow the instructions in
+    {{{http://www.vogella.com/articles/JUnit/article.html#usingjunit_staticimports}Lars's article}}  above on how to teach Eclipse to use
+    static imports.
+
+    As you have seen in the dependencies above this project includes junit-dep as a dependencies. This version doesn't come with internally bundled
+    Hamcrest matchers but with proper dependencies. This will save you a lot of pain later when you start using the Hamcrest matchers.
+    See {{./rec_junit_hamcrest.html}} for more information.
+

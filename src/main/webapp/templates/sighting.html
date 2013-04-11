@@ -1,0 +1,140 @@
+<h1>Sichtungen pflegen</h1>
+
+<form class="form-horizontal" id="editForm"
+	data-bind="fadeVisible: sightingList() == null">
+	<fieldset data-bind="with: sighting">
+		<!-- ko if: sightingId  -->
+		<legend>Sichtung bearbeiten</legend>
+		<!-- /ko -->
+		<!-- ko ifnot: sightingId  -->
+		<legend>Neue Sichtung</legend>
+		<!-- /ko -->
+
+		<div class="row-fluid">
+
+			<span class="control-group" data-bind="message: $data"></span>
+
+			<div class="control-group required">
+				<label class="control-label" for="vessel">Schiffstyp</label>
+				<div class="controls">
+					<select id="vessel" class="required" name="vessel"
+						data-bind="options: $parent.vessels, optionsText: 'vesselName',  optionsValue: 'vesselId', value: vessel, optionsCaption: ' '">
+					</select>
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="sightingMemo">Beschreibung</label>
+				<div class="controls">
+					<textarea type="text" id="sightingMemo" class="input-large"
+						name="sightingMemo" class="required"
+						data-bind="value: sightingMemo"></textarea>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="sightingDate">Datum/Uhrzeit
+					(lokal)</label>
+				<div class="controls">
+					<input type="text" data-bind="datetimepicker: sightingDate" id="sightingDate">
+					</input>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="sightingTimezone">Zeitzone
+					(lokal)</label>
+				<div class="controls">
+					<select id="sightingTimezone" class="required"
+						data-bind="options: $parent.timezones, optionsText: 'timezoneName',  optionsValue: 'timezoneName', value: sightingTimezone, optionsCaption: ' '">
+					</select>
+				</div>
+			</div>
+
+
+		</div>
+		<button type="button" id="save" class="btn-primary btn"
+			data-bind="click: $parent.saveSighting">Speichern</button>
+
+		<a href="#" class="btn" data-bind="click: $parent.goToMain">Abbrechen</a>
+	</fieldset>
+</form>
+
+<form class="form-horizontal"
+	data-bind="fadeVisible: sightingList() != null">
+	<fieldset>
+		<legend>Sichtungen</legend>
+
+
+		<div class="container-fluid" data-bind="with: searchSighting">
+			<div class="control-group">
+				<label class="control-label" for="vesselName">Schiffstyp</label>
+				<div class="controls">
+					<select id="vessel"
+						data-bind="options: $parent.vessels, optionsText: 'vesselName',  optionsValue: 'vesselId', value: vessel, optionsCaption: ' '">
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sightingMemo">Beschreibung</label>
+				<div class="controls">
+					<input type="text" data-bind="value: sightingMemo" />
+				</div>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="controls">
+				<button type="button" class="btn"
+					data-bind="click: resetSearch, hotkeydown: { 'ctrl+r': resetSearch }">Felder
+					leeren</button>
+
+				<button type="button" class="btn btn-primary" id="search"
+					data-bind="click: search, hotkeydown: { 'return': search }">Suchen</button>
+			</div>
+		</div>
+
+		<p />
+
+
+
+		<button id="addButton" type="button" class="btn-primary btn"
+			data-bind="click: goToAdd">Hinzufügen</button>
+
+		<p />
+
+
+
+		<div class="row-fluid">
+			<table class="table table-bordered" id="sightingList">
+				<thead>
+					<tr>
+						<th>Schiffstyp</th>
+						<th>Datum</th>
+						<th>Aktion</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: sightingList">
+					<tr>
+						<td data-title="Schiffstyp"
+							data-bind="text: vessel ? vessel.vesselName : '-'" />
+						<td data-title="Datum" data-bind="text: sightingDate != null ? moment(sightingDate).format('DD.MM.YYYY HH:mm:ss') : '-'" />
+						<td data-title="Aktion">
+							<div class="btn-group">
+								<a class="btn btn-small" href="#" title="Bearbeiten" name="edit"
+									data-bind="click: $parent.goToEdit"> <i class="icon-edit"></i>
+								</a> <a class="btn btn-small" href="#" title="Entfernen"
+									name="delete" data-bind="click: $parent.deleteSighting"> <i
+									class="icon-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p />
+		</div>
+
+	</fieldset>
+</form>

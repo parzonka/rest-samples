@@ -1,0 +1,88 @@
+<h1 id="vessel">Schiffstypen pflegen</h1>
+
+<form class="form-horizontal"
+	data-bind="fadeVisible: vesselList() == null">
+	<fieldset data-bind="with: vessel">
+		<!-- ko if: vesselId  -->
+		<legend>Schiffstyp bearbeiten</legend>
+		<!-- /ko -->
+		<!-- ko ifnot: vesselId  -->
+		<legend>Neue Schiffstyp</legend>
+		<!-- /ko -->
+
+		<div class="row-fluid">
+
+			<span class="control-group" data-bind="message: $data"></span>
+
+			<div class="control-group">
+				<label class="control-label" for="bezeichnung">Name</label>
+				<div class="controls" data-bind="foreach: vesselName">
+					<div class="input-append">
+						<input type="text" class="input-prepend"
+							data-bind="value: textString, attr: {id: 'vesselName' + $index()}" />
+					</div>
+					<div class="input-prepend">
+						<select class="input-mini" data-bind="value: textLanguage">
+							<option>de</option>
+							<option>en</option>
+						</select>
+					</div>
+					<a class="btn btn-small removeLanguage" href="#" title="Entfernen"
+						data-bind="click: $root.currentSection().data().deleteLanguage, attr: {id: 'removeLanguage' + $index()}">
+						<i class="icon-trash"></i>
+					</a> <br />
+				</div>
+				<div class="controls">
+					<a class="btn" href="#" id="addLanguage"
+						data-bind="click: $root.currentSection().data().addLanguage">
+						Neue Übersetzung </a>
+				</div>
+
+			</div>
+		</div>
+		<button type="button" id="save" class="btn-primary btn"
+			data-bind="click: $parent.saveVessel">Speichern</button>
+
+		<a href="#" class="btn" data-bind="click: $parent.goToMain">Abbrechen</a>
+	</fieldset>
+</form>
+
+<form class="form-horizontal"
+	data-bind="fadeVisible: vesselList() != null">
+	<fieldset>
+		<legend>Schiffstypen</legend>
+
+		<button id="addButton" type="button" class="btn-primary btn"
+			data-bind="click: goToAdd">Hinzufügen</button>
+
+		<p />
+
+		<div class="row-fluid">
+			<table class="table table-bordered" id="vesselList">
+				<thead>
+					<tr>
+						<th>Bezeichnung</th>
+						<th>Aktion</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: vesselList">
+					<tr>
+						<td data-title="Bezeichnung" data-bind="text: vesselName" />
+						<td data-title="Aktion">
+							<div class="btn-group">
+								<a class="btn btn-small" href="#" title="Bearbeiten" name="edit"
+									data-bind="click: $parent.goToEdit"> <i class="icon-edit"></i>
+								</a> <a class="btn btn-small" href="#" title="Entfernen"
+									name="delete" data-bind="click: $parent.deleteVessel"> <i
+									class="icon-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p />
+		</div>
+
+	</fieldset>
+</form>

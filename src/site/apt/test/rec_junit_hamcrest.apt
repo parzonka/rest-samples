@@ -1,0 +1,42 @@
+    ------
+    Using Hamcrest Matchers in your tests
+    ------
+    Alexander Schwartz
+    ------
+    12 November 2012
+
+Using Hamcrest Matchers in your tests
+
+%{toc|fromDepth=2}
+
+* What are Hamcrest Matchers and why you should use them
+
+  The asserts of JUnit become hard to read, especially the error messages are not very meaningful when you do complex comparisons.
+
+  Hamcrest Matchers provide a new (and to me better) way of writing asserts. Especially if you want to be typesafe in your
+  comparisons and want to handle collections.
+
+* How to use it
+
+  Add another two dependency to your project
+
+%{snippet|id=junithamcrest1|url=file:pom.xml}
+
+  Then take the old code:
+
+%{snippet|id=junitbasic2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentTest.java}
+
+  and convert it to Hamcrest matchers
+
+%{snippet|id=junithamcrest2|url=file:src/test/java/de/ahus1/model/manual/test/SegmentHamcrestTest.java}
+
+* Where to learn more about it
+
+  Please read the short tutorial to learn more about it: {{http://code.google.com/p/hamcrest/wiki/Tutorial}}
+
+* Tips and Tricks
+
+  In order to get code-assist in Eclipse, add <<<org.hamcrest.Matchers>>> and <<<org.hamcrest.MatcherAssert>>> to your
+  favorites like described in {{{http://www.vogella.com/articles/JUnit/article.html#usingjunit_staticimports}Lars's article}}.
+
+
