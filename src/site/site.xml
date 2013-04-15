@@ -13,6 +13,7 @@
       <item name="Maven Site Documentation" href="documentation/rec_maven_site.html"/>
       <item name="Basic JUnit Testing" href="test/rec_junit_basic.html"/>
       <item name="Using Hamcrest Matchers" href="test/rec_junit_hamcrest.html"/>
+      <item name="Basic Jasmine Testing" href="test/rec_jasmine_basic.html"/>
     </menu>
 
     <menu ref="reports"/>

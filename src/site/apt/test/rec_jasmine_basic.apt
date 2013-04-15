@@ -1,0 +1,102 @@
+    ------
+    Basic Jasmine Testing
+    ------
+    Alexander Schwartz
+    ------
+    15 April 2013
+
+Basic Jasmine Testing
+
+%{toc|fromDepth=2}
+
+* What is Jasmine?
+
+    Jasmine is a framework for automated JavaScript tests. The first intention is to create unit tests for your
+    JavaScript code, but soon you'll make use of testing the DOM mannipulations you do with your JavaScript code
+    as well.
+
+    It's a "behaviour driven" test framework supporting "behaviour driven development" (BDD).
+
+* Why you should use it
+
+** The intended used for Jasmine
+
+    One good practice is for unit tests to have a minimum set of HTML (that's why it is called a Unit test). This
+    ensures that your tests are small, don't break unintendedly, and fast. This helps you when you create libraries
+    and re-usable code.
+
+** Why behaviour driven development is different
+
+    Basically the same reasons why you use {{./rec_junit_basic.html}} are true for Jasmine as well. The structured
+    way of the behaviour driven development helps you to write down what was the indented purpose of the test
+    (in describing the behaviour). In the end looking at a test suite is actually a description of the
+    funktionality (as requested by the user). This is the thing that makes it quite different from the common
+    JUnit tests that you sometime see: when they break and you try to fix them, you don't have a faint idea why
+    someone wrote the test in the beginning, and why it should be green instead of red.
+
+* How to use it
+
+** Why this project does it quite differently for the moment
+
+    This project doesn't provide libraries or shared JavaScript code yet, but it uses it for unit test based tests.
+    Therefore you start the single page app, pass a parameter to initialize the testing, and the run the tests
+    (while the backend is mocked). This is quite different from stating a minimal test case. Let's see where this
+    leads us to...
+
+** Setting up Jasmine
+
+    All setup is done in <<<test.js>>>
+
+%{snippet|id=jasminebasic1|url=file:src/main/webapp/js/test.js}
+
+    Finally you run your tests by first loading them, and then executing Jasmine:
+
+%{snippet|id=jasminebasic2|url=file:src/main/webapp/js/test.js}
+
+** Write your test cases
+
+	This picks a small test sample from <<<vesselTest.js>>>:
+
+%{snippet|id=jasminebasic3|url=file:src/main/webapp/js/modules/tests/vesselTest.js}
+
+    Well, not so small at all, but quite readable - right?
+
+    TODO: add link to sinon and jasmine jquery
+
+** Running your tests
+
+*** Running them from within a browser
+
+    This runs the tests within a given browser instance. Any browser actually.
+
+    Just append <<<?spec>>> at the end of the URL, due to this the magic starts in the <<<test.js>>> script
+    by peeking at the URL.
+
+%{snippet|id=jasminebasic4|url=file:src/main/webapp/js/test.js}
+
+    Try this URL for a start: {{http://localhost:8080/rest-samples/?spec=}}.
+
+    At the end of the browser window you will find a hopefully green coloured bar inidicating that everything works fine.
+
+*** Running specific tests only
+
+    You can re-run the tests by clicking on <run all> in the test result. After selecting the <passed> or <skipped> check
+    box you will be able to run single tests or test suites (successful tests are hidden by default, failed tests are shown
+    in detail).
+
+    The included <<<jasmine-html.js>>> has been slightly modified to supply nice URLs with the <<<spec>>> suffix all the time
+    to make re-running tests easy.
+
+*** Running them from the command line or build server
+
+    TODO
+
+* Where to learn more about it
+
+    You can find the official documentation on Jasmine at {{http://pivotal.github.io/jasmine/}}. This also includes a tutorial.
+
+* Tips and Tricks
+
+    ... to come ...
+
+    TODO

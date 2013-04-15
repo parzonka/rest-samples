@@ -91,7 +91,12 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
       });
 
+      // START SNIPPET: jasminebasic3
+
+      // this is what we want to describe with our test
       describe("Vessel Add", function() {
+
+        // this is how we prepare the use case to be in a defined state
         beforeEach(function() {
 
           expect($("#vesselList > tbody > tr").length).toBe(2);
@@ -105,6 +110,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
         });
 
+        // one behaviour after another is tested here
         it("we can add a vessel with add", function() {
 
           expect($("#vesselName0")).toBeVisible();
@@ -114,6 +120,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
         });
 
+        // one behaviour after another is tested here
         it("we can remove and add a language", function() {
 
           // start with the language visible
@@ -133,7 +140,14 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
         });
 
+        // after each test a cleanup is performed - none is needed here.
+        afterEach(function() {
+          // nothing for now
+        });
+
       });
+
+      // END SNIPPET: jasminebasic3
 
       describe("Vessel edit", function() {
 

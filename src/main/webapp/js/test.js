@@ -1,26 +1,32 @@
 define([ 'knockout' ], function(ko) {
 
   return function() {
+    // START SNIPPET: jasminebasic4
     if (location.search.indexOf('?spec=') != -1) {
+    // END SNIPPET: jasminebasic4
 
+      // START SNIPPET: jasminebasic1
       require([ "jasmine", "jasmine-html", "sinon" ], function(jasmine) {
 
+        // dynamically add CSS to the page
         var link = document.createElement("link");
         link.type = "text/css";
         link.rel = "stylesheet";
         link.href = "css/jasmine.css";
         document.getElementsByTagName("head")[0].appendChild(link);
 
+        // setup Jasmine environment
         var jasmineEnv = jasmine.getEnv();
         jasmineEnv.updateInterval = 1000;
 
-        var htmlReporter = new jasmine.TrivialReporter(); // HtmlReporter();
-
-        jasmineEnv.addReporter(htmlReporter);
-
+        // create a "reporter" that will display the test results within the page
+        var reporter = new jasmine.TrivialReporter();
+        jasmineEnv.addReporter(reporter);
         jasmineEnv.specFilter = function(spec) {
-          return htmlReporter.specFilter(spec);
+          return reporter.specFilter(spec);
         };
+
+        // END SNIPPET: jasminebasic1
 
         // we will be faking only REST calls
         sinon.FakeXMLHttpRequest.useFilters = true;
@@ -32,18 +38,21 @@ define([ 'knockout' ], function(ko) {
           return true;
         });
 
+        sinon.log = function(data) {
+          console.log(data);
+        };
+
         /*
          * this seems to be a bug in !text -> only works here with relative path
          * we need to require these, so they are available later.
          */
+        // START SNIPPET: jasminebasic2
         require([ "modules/tests/vesselTest", "modules/tests/sightingTest" ], function(vesselTest, sightingTest) {
           vesselTest();
           sightingTest();
-          sinon.log = function(data) {
-            console.log(data);
-          };
           jasmineEnv.execute();
         });
+        // END SNIPPET: jasminebasic2
 
         // clear
 
