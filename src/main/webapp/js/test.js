@@ -28,7 +28,9 @@ define([ 'knockout' ], function(ko) {
 
         // END SNIPPET: jasminebasic1
 
-        // we will be faking only REST calls
+        // START SNIPPET: jasminesinon1
+
+        // we will be faking only REST calls; call loading of resources should still pass
         sinon.FakeXMLHttpRequest.useFilters = true;
         sinon.FakeXMLHttpRequest.addFilter(function(method, url, async,
             username, password) {
@@ -38,9 +40,12 @@ define([ 'knockout' ], function(ko) {
           return true;
         });
 
+        // sinon should log to the console.
         sinon.log = function(data) {
           console.log(data);
         };
+
+        // END SNIPPET: jasminesinon1
 
         /*
          * this seems to be a bug in !text -> only works here with relative path

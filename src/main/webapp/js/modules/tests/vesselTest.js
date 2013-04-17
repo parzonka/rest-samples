@@ -4,9 +4,13 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
     describe("Manage Vessels", function() {
 
       var server = null;
+
+
+      // START SNIPPET: jasminesinon2
       var vesselList = ko.toJSON(getJSONFixture('vesselList.json'));
       var vessel = ko.toJSON(getJSONFixture('vessel.json'));
       var vesselNew = ko.toJSON(getJSONFixture('vesselNew.json'));
+      // END SNIPPET: jasminesinon2
 
       beforeEach(function() {
 
@@ -18,13 +22,16 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
           // expect the main page to be shown
           expect($("#welcome")).toExist();
 
+          // START SNIPPET: jasminesinon3
           // create a fake server with some responses
           server = sinon.fakeServer.create();
 
+          // for each request define the expected response
           server.respondWith("GET", "rest/vessel", [ 200, {
             "Content-Type" : "application/json"
           }, vesselList ]);
 
+          // also empty responses are possible
           server.respondWith("DELETE", "rest/vessel/1", [ 204, null, "" ]);
 
           server.respondWith("GET", "rest/vessel/1", [ 200, {
@@ -37,11 +44,15 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
             "Content-Type" : "application/json"
           }, vesselNew ]);
 
+          // all other requests will return a 404 error
+          // END SNIPPET: jasminesinon3
+
           // go to this use case
           hasher.setHash("vessel/main");
 
         });
 
+        // START SNIPPET: jasminesinon4
         /*
          * wait for the use case to appear. There might be several async
          * responses going on; therefore call server.respond() repeatedly.
@@ -50,6 +61,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
           server.respond();
           return $("#vesselList").length != 0;
         }, "the list didn't appear", 1000);
+        // END SNIPPET: jasminesinon4
 
         waitsFor(function() {
           return $("#vesselList > tbody > tr").length == 2;
@@ -76,6 +88,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
       });
 
+      // START SNIPPET: jasminesinon5
       it("removes a vessel when clicking on delete", function() {
 
         // starting with two vessels
@@ -83,6 +96,8 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
         // click on the first one
         $("a[name=delete]")[0].click();
+
+        // now make the server respond
         server.respond();
 
         // expect only the second to be left over
@@ -90,6 +105,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
         expect($("#vesselList > tbody > tr")[0]).toContainHtml("Vessel 2");
 
       });
+      // END SNIPPET: jasminesinon5
 
       // START SNIPPET: jasminebasic3
 

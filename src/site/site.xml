@@ -14,6 +14,7 @@
       <item name="Basic JUnit Testing" href="test/rec_junit_basic.html"/>
       <item name="Using Hamcrest Matchers" href="test/rec_junit_hamcrest.html"/>
       <item name="Basic Jasmine Testing" href="test/rec_jasmine_basic.html"/>
+      <item name="Using Jasmine with Sinon" href="test/rec_jasmine_sinon.html"/>
     </menu>
 
     <menu ref="reports"/>

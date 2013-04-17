@@ -27,7 +27,7 @@ Basic Jasmine Testing
 
 ** Why behaviour driven development is different
 
-    Basically the same reasons why you use {{./rec_junit_basic.html}} are true for Jasmine as well. The structured
+    Basically {{{./rec_junit_basic.html}the same reasons why you use JUnit}} are true for Jasmine as well. The structured
     way of the behaviour driven development helps you to write down what was the indented purpose of the test
     (in describing the behaviour). In the end looking at a test suite is actually a description of the
     funktionality (as requested by the user). This is the thing that makes it quite different from the common
@@ -61,7 +61,10 @@ Basic Jasmine Testing
 
     Well, not so small at all, but quite readable - right?
 
-    TODO: add link to sinon and jasmine jquery
+    You might have noticed the calls to the <<<server>>> object. This is a mocked backend provided by Sinon.
+    {{{./rec_jasmine_sinon.html}Here you can find out more about Sinon.}}
+
+    TODO: add link to jasmine jquery
 
 ** Running your tests
 

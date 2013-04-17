@@ -1,0 +1,79 @@
+    ------
+    Jasmine Testing with Sinon
+    ------
+    Alexander Schwartz
+    ------
+    16 April 2013
+
+Jasmine Testing with Sinon
+
+%{toc|fromDepth=2}
+
+* What is Sinon?
+
+    Sinon is a testing library to be used in JavaScript tests. It can be used to instrument JavaScript code
+    and create a mock server.
+
+    This is an advanced technique building on top of a JavaScript testing framework like {{{./rec_jasmine_basic.html}Jasmine}}.
+
+    If you have been a Java developer in your previous life, you might have used Mockito. Sinon is quite different, but it gives you an
+    idea where you can use Sinon.
+
+    TODO: Link to Mockito.
+
+* Why you should use it
+
+** The intended used for Sinon
+
+    The three things you can use Sinon for:
+
+       1. Spies: create a kind of interceptor that you can later ask if it has been called and with what kind of parameters
+
+       2. Stubs: create a mock of an object and ensure that it i.e. returns a specific value all the time
+
+       3. Fake a server: When there are server calls, intercept them and return a specific reponse (the one you need for your test case)
+
+* How to use it
+
+** How to use spies and stubs
+
+    There is a good example on the Sinon homepage that I don't want to repeat. Please go there and give it a try: {{http://sinonjs.org}}
+
+** How to use a fake server
+
+    The common setup is done in <<<test.js>>>
+
+%{snippet|id=jasminesinon1|url=file:src/main/webapp/js/test.js}
+
+  After this setup is done, you can use it in your test cases. This picks a small test sample from <<<vesselTest.js>>>.
+
+  First you retrieve your stored sample responses:
+
+%{snippet|id=jasminesinon2|url=file:src/main/webapp/js/modules/tests/vesselTest.js}
+
+    Then you define the requests that return this data for a given URL.
+
+%{snippet|id=jasminesinon3|url=file:src/main/webapp/js/modules/tests/vesselTest.js}
+
+  When you then have frontend interactions that trigger background activity, you can fire the
+  server responses by calling <<<server.respond()>>>. Using A loop for this when you have really complex
+  background loading going on might help:
+
+%{snippet|id=jasminesinon4|url=file:src/main/webapp/js/modules/tests/vesselTest.js}
+
+    If you are "just" firing a REST request, you usually get away with something as simple as that:
+
+%{snippet|id=jasminesinon5|url=file:src/main/webapp/js/modules/tests/vesselTest.js}
+
+    That's really nice and to the point, considering this is an asynchronous request going on here.
+    Suddenly something that is quite complex regarding timing becomes linear as you decide when the
+    server will answer.
+
+* Where to learn more about it
+
+    You can find the official documentation on Sinon at {{http://sinonjs.org/}}. This also includes a tutorial.
+
+* Tips and Tricks
+
+    ... to come ...
+
