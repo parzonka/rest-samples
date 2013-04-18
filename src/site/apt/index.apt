@@ -1,0 +1,28 @@
+    ------
+    REST Samples project
+    ------
+    Alexander Schwartz
+    ------
+    18 April 2013
+
+REST samples
+
+ This project tries provide simple and advanced examples on how to provide and consume rest services.
+
+ General ideas about this project:
+
+   * Start simple
+
+   * introduce concepts one by one
+
+   * provide them well documented
+
+   * provide something to try out
+
+   * show how automatic testing can work here
+
+   * target environment should be JBoss 7 for a start
+
+   * we will use RESTEasy for the moment as it is bundled with JBoss 7
+
+ The Repository is hosted at github. Please have a look at {{https://github.com/ahus1/rest-samples#readme}} for a start.

@@ -5,8 +5,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ahus1</groupId>
   <artifactId>rest-samples</artifactId>
+  <description>This is a project to show some samples about HTML5, JEE and REST. Please see https://github.com/ahus1/rest-samples#readme for more details.</description>
   <version>0.7.0-SNAPSHOT</version>
   <packaging>war</packaging>
+  <url>http://rest-samples.ahus1.de/</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <comments>Unless otherwise specified i.e. in a library file this is all MIT license. See http://www.opensource.org/licenses/mit-license.php</comments>
+    </license>
+  </licenses>
   <properties>
     <arquillian.version>1.0.3.Final</arquillian.version>
     <arquillian.jboss.version>7.1.1.Final</arquillian.jboss.version>
@@ -15,6 +23,30 @@
       <selenium.version>2.23.0</selenium.version> -->
     <resteasy>2.3.2.Final</resteasy>
   </properties>
+  <distributionManagement>
+    <site>
+      <id>alextibit</id>
+      <name>Alex' tibit server</name>
+      <url>ftp://www4.tibit.de/html/rest-samples</url>
+    </site>
+  </distributionManagement>
+  <developers>
+    <developer>
+      <name>Alexander Schwartz</name>
+      <email>alexander.schwartz@gmx.net</email>
+      <roles>
+        <role>Initiator</role>
+      </roles>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/ahus1/rest-samples.git</connection>
+    <url>https://github.com/ahus1/rest-samples.git</url>
+  </scm>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/ahus1/rest-samples/issues</url>
+  </issueManagement>
   <dependencyManagement>
     <dependencies>
       <!-- Dependencies for Arquillian -->
@@ -207,7 +239,7 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>JBOSS_NEXUS</id>
+      <id>JBOSSNEXUS</id>
       <url>http://repository.jboss.org/nexus/content/groups/public</url>
     </repository>
   </repositories>
@@ -240,13 +272,20 @@
         <artifactId>maven-site-plugin</artifactId>
         <!-- I tried to use version 3.2 but then the site:run command opened
           a random port. Specifying the port in the configuration with a <port/> parameter
-          didn't work -->
-        <version>3.0</version>
+          didn't work http://jira.codehaus.org/browse/MSITE-662 -->
+        <version>3.1</version>
         <configuration>
           <inputEncoding>UTF-8</inputEncoding>
           <outputEncoding>UTF-8</outputEncoding>
           <port>8090</port>
         </configuration>
+        <dependencies>
+          <dependency><!-- add support for ssh/scp -->
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ftp</artifactId>
+            <version>1.0</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <!-- END SNIPPET: mvnsite1 -->
       <plugin>

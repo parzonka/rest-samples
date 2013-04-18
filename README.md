@@ -30,6 +30,8 @@ You can look at the raw documents in src/site/apt/ - or you can run the site loc
 
 and pointing your browser at [http://localhost:8090](http://localhost:8090).
 
+A recent version of the site is deployed to (http://rest-samples.ahus1.de/).
+
 ## How to develop changes for these REST samples
 
 Please use Eclipse Juno JEE for developing these. Recommended plugins are JBoss developer tools 4.0, m2e 1.2+ for Maven support.
