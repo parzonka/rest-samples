@@ -34,6 +34,9 @@ require.config({
     'jasmine' : {
       exports : "jasmine"
     },
+    'jasmine-junit' : {
+      deps : [ 'jasmine' ]
+    },
     'sinon' : {
       exports : "sinon"
     },
@@ -64,7 +67,9 @@ require.config({
     jasmine : 'libs/jasmine',
     sinon : 'libs/sinon',
     moment : 'libs/moment',
-    "jasmine-jquery" : 'libs/jasmine-jquery'
+    "jasmine-jquery" : 'libs/jasmine-jquery',
+    "jasmine-junit" : 'libs/jasmine.junit_reporter',
+    "jasmine-console" : 'libs/jasmine.console_reporter'
   }
 });
 

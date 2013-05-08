@@ -95,7 +95,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
         expect($("#vesselList > tbody > tr").length).toBe(2);
 
         // click on the first one
-        $("a[name=delete]")[0].click();
+        $("a[name=delete]").first().click();
 
         // now make the server respond
         server.respond();
@@ -175,7 +175,7 @@ define([ "hasher", "sinon", "knockout", "jasmine-jquery", ], function(hasher,
 
           expect($("a[name=edit]").length).toBe(2);
 
-          $("a[name=edit]")[0].click();
+          $("a[name=edit]").first().click();
 
           server.respond();
 

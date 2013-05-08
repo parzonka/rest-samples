@@ -6,7 +6,7 @@ define([ 'knockout' ], function(ko) {
     // END SNIPPET: jasminebasic4
 
       // START SNIPPET: jasminebasic1
-      require([ "jasmine", "jasmine-html", "sinon" ], function(jasmine) {
+      require([ "jasmine", "jasmine-html", "sinon", "jasmine-junit"], function(jasmine) {
 
         // dynamically add CSS to the page
         var link = document.createElement("link");
@@ -22,9 +22,12 @@ define([ 'knockout' ], function(ko) {
         // create a "reporter" that will display the test results within the page
         var reporter = new jasmine.TrivialReporter();
         jasmineEnv.addReporter(reporter);
+
         jasmineEnv.specFilter = function(spec) {
           return reporter.specFilter(spec);
         };
+
+        jasmineEnv.addReporter(new jasmine.JUnitXmlReporter());
 
         // END SNIPPET: jasminebasic1
 
@@ -42,7 +45,7 @@ define([ 'knockout' ], function(ko) {
 
         // sinon should log to the console.
         sinon.log = function(data) {
-          console.log(data);
+          // console.log(data);
         };
 
         // END SNIPPET: jasminesinon1

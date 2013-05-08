@@ -1,0 +1,71 @@
+    ------
+    Headless testing with Jasmine and PhantomJS
+    ------
+    Alexander Schwartz
+    ------
+    21 April 2013
+
+Headless testing with Jasmine and PhantomJS
+
+
+* What is PhantomJS?
+
+  PhantomJS is a headless browser, that is: a browser without a interactive user interface. This sounds quite
+  useless to a user, but it's quite useful to run it on an integration server.
+
+  It is based on WebKit as a rendering engint. This way it is quite similar to Chrome and Safari,
+  and similar to the mobile browsers on Android and iOS. Opera is also moving to WebKit
+  ({{{http://my.opera.com/ODIN/blog/300-million-users-and-move-to-webkit}see blog post}}).
+
+  The JavaScript engine is based in WebKit's standard JavaScript engine, {{{http://www.webkit.org/projects/javascript/}JavaScriptCore}}.
+
+  Browse to the home page to learn more about it: {{http://phantomjs.org/}}
+
+* Why you should use it
+
+  It is necessary to automate all tests in a continuous integration build to find breaking tests early.
+
+  PhantomJS gives you an easy and straightforward way to do this. It's a lot simpler than setting up other solutions
+  that steer real browsers like {{{http://docs.seleniumhq.org/projects/remote-control/}Selenium RC}}.
+
+  Using PhantomJS you'll have browser based tests setup within hours, and you'll receive the response within
+  a few minutes are your commit.
+
+  It's not a real browser, and probably none your customers use, but it's very close and gives you immediate feedback.
+
+* How to use it
+
+** First steps
+
+  You can download a binary from the home page. For windows there are binaries that you just extract.
+  You run it from the command line with a JavaScript-file that direct the browser. If you don't pass a parameter,
+  you get a command line.
+
+  See more at the {{{https://github.com/ariya/phantomjs/wiki/Quick-Start}quick start page}}.
+
+  Add the path with phantomJS to your path.
+
+** Running Jasmine tests in PhantomJS
+
+  You run phantomJS with Jasmine like you would do in a normal browser. Please ensure to start the application first.
+  This command has been prepared for you in <<<run-phantomjs.bat>>>
+
++---+
+phantomjs phantomjs-testrunner.js http://localhost:8080/rest-samples/?spec=
++---+
+
+  The file <<<phantomjs-testrunner.js>>> will ensure to call the URL, and will wait until the test suite is complete.
+  The <<<jasmine.junit_reporter.js>>> will ensure, that all test results are first written to a buffer, and finally
+  <<<phantomjs-testrunner.js>>> writes them all to files named <<<TEST*.xml>>>.
+
+  When you use the paths as setup in the prepared batch file, they will end up in <<<target/phantomjs-reports>>>.
+
+* Where to learn more about it
+
+  See this blog entry for some discussion around Jasmine and phantomJS testing:
+  {{{http://blog.founddrama.net/2012/09/headless-javascript-testing-with-jasmine-and-phantomjs/}headless JavaScript unit testing with Jasmine and PhantomJS}}.
+
+* Tips and Tricks
+
+  You can use a specific URL (like you do in the browser) to run specific tests.
+

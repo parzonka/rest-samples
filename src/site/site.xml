@@ -34,6 +34,7 @@
         collapse="true">
         <item name="Basic Jasmine Testing" href="test/rec_jasmine_basic.html" />
         <item name="Using Jasmine with Sinon" href="test/rec_jasmine_sinon.html" />
+        <item name="Headless testing" href="test/rec_jasmine_phantomjs.html" />
       </item>
     </menu>
 
