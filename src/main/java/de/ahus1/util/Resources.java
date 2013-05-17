@@ -13,9 +13,12 @@ import javax.persistence.PersistenceContext;
  */
 public class Resources {
 
+  // START SNIPPET: hibernatebasic2
   @Produces
   @PersistenceContext
   private EntityManager em;
+
+  // END SNIPPET: hibernatebasic2
 
   /**
    * A logger (context sensitive for the given class).

@@ -24,6 +24,10 @@
       <item name="Maven Site Documentation" href="documentation/rec_maven_site.html" />
     </menu>
 
+    <menu name="Server">
+        <item name="Basic Hibernate Testing" href="server/rec_hibernate_basic.html" />
+    </menu>
+
     <menu name="Testing">
       <item name="Java Testing" href="test/index_java.html"
         collapse="true">

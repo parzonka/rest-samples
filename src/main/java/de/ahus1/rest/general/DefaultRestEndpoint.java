@@ -158,10 +158,12 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
   @POST
   @Path("/qbe")
   public List<ENTITY> queryByExample(ENTITY entity) {
+    // START SNIPPET: hibernatebasic3
     Session session = (Session) em.getDelegate();
     Example example = Example.create(entity).enableLike(MatchMode.ANYWHERE)
         .ignoreCase();
     Criteria criteria = session.createCriteria(entity.getClass()).add(example);
+    // END SNIPPET: hibernatebasic3
     addSubCriteria(criteria, entity);
 
     if (criteria.list().isEmpty()) {

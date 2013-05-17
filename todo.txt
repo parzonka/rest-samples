@@ -3,3 +3,5 @@
   * automatische Testfälle
 
   * Tooltips für Hotkeys
+
+  * add no cache filter for all resources, to avoid caching of resources during development

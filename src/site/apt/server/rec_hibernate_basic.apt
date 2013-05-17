@@ -1,0 +1,83 @@
+    ------
+    Basic Hibernate Setup
+    ------
+    Alexander Schwartz
+    ------
+    17 Mai 2013
+
+Basic Hibernate Setup
+
+%{toc|fromDepth=2}
+
+* What is Hibernate?
+
+    Hibernate is used as a JPA implementation. It will allow you to persist your data in a (SQL) database.
+
+* Why you should use it
+
+** The intended used for JPA
+
+    Normally you should use interfaces provided by the Entity Manager. As long as you use the standard interfaces,
+    you will not come into contact with Hibernate itself, but only JPA.
+
+** Things why you might want to access Hibernate directly
+
+    There are some things that didn't make it into the standard JPA yet. One sample is the "query by example" (QBE)
+    feature.
+
+* How to use it
+
+** Setup maven project
+
+    Add the following to you <<<pom.xml>>>.
+
+%{snippet|id=hibernatebasic1|url=file:pom.xml}
+
+    Please note that the libraries are marked as <<<provided>>>, as they will be included in the JBoss application
+    server already.
+
+    The acccess point to JPA is the entity manger. In order to have it injected everywhere, use CDI like in the
+    <<<Resources.java>>> (or any other Java class).
+
+%{snippet|id=hibernatebasic2|url=file:src/main/java/de/ahus1/util/Resources.java}
+
+** Persist classes
+
+    Please have a look at the <<<Timezone.java>>> class to see how to make it work. See <<<Sighting.java>>> for a
+    first sample with relations between entities.
+
+** Optimistic Locking
+
+    There is a base class <<<AbstractEntity>>> that provides a version attribute to all decending classes to
+    provide optimistic locking.
+
+** JPA Metamodel
+
+    You can use the JPA Metamodel to create queries using the JPA criteria API. You you have to generate
+    the helper classes using Maven first, see this snippet for an example:
+
+%{snippet|id=hibernatebasic5|url=file:pom.xml}
+
+%{snippet|id=hibernatebasic4|url=file:pom.xml}
+
+    You'll then find the helper classes in <<<target\generated-sources\annotations>>>. They all end with an underscore.
+
+    Afterwards you can use it like this:
+
+ 	... TODO ...
+
+** Query by example
+
+    To unlock Hibernate specific features like query by example, see this example taken from <<<DefaultRestEndpoint>>>.
+
+%{snippet|id=hibernatebasic3|url=file:src/main/java/de/ahus1/rest/general/DefaultRestEndpoint.java}
+
+* Where to learn more about it
+
+    You can find the official documentation on Hibernate at {{http://www.hibernate.org/}}. This also includes a tutorial.
+
+* Tips and Tricks
+
+    ... to come ...
+
+    TODO

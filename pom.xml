@@ -68,11 +68,6 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.0-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.jboss.spec.javax.servlet</groupId>
       <artifactId>jboss-servlet-api_3.0_spec</artifactId>
       <scope>provided</scope>
@@ -107,6 +102,19 @@
       <artifactId>validation-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- START SNIPPET: hibernatebasic1 -->
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.0-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>4.1.0.Final</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- END SNIPPET: hibernatebasic1 -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
@@ -116,12 +124,6 @@
     <dependency>
       <groupId>org.jboss.spec.javax.faces</groupId>
       <artifactId>jboss-jsf-api_2.0_spec</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>4.1.0.Final</version>
       <scope>provided</scope>
     </dependency>
     <!-- inject http request parameters for a flexible search -->
@@ -226,12 +228,14 @@
       <version>${arquillian.jboss.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- START SNIPPET: hibernatebasic5 -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
       <version>1.2.0.Final</version>
       <scope>provided</scope>
     </dependency>
+    <!-- END SNIPPET: hibernatebasic5 -->
     <!-- Dependencies for Glassfish support in Arquillian -->
     <!-- <dependency> <groupId>org.jboss.arquillian.container</groupId> <artifactId>arquillian-glassfish-remote-3.1</artifactId>
       <version>${arquillian.glassfish-remote.version}</version> <scope>test</scope>
@@ -253,6 +257,7 @@
         <version>1.26</version> <executions> <execution> <goals> <goal>docs</goal>
         </goals> <configuration> <docsDir> ${project.build.directory}/docs </docsDir>
         </configuration> </execution> </executions> </plugin> -->
+      <!-- START SNIPPET: hibernatebasic4 -->
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
@@ -266,6 +271,7 @@
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
+      <!-- END SNIPPET: hibernatebasic4 -->
       <!-- START SNIPPET: mvnsite1 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
