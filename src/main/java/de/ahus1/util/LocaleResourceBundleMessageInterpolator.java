@@ -41,6 +41,7 @@ public class LocaleResourceBundleMessageInterpolator extends
    *          context for interpolation
    * @return interpolated message
    */
+  // START SNIPPET: hibernatevalidator5
   @Override
   public String interpolate(String message, Context context) {
     Locale l = locale.get();
@@ -50,4 +51,5 @@ public class LocaleResourceBundleMessageInterpolator extends
       return super.interpolate(message, context);
     }
   }
+  // END SNIPPET: hibernatevalidator5
 }

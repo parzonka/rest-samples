@@ -1,0 +1,81 @@
+    ------
+    Basic Hibernate Setup
+    ------
+    Alexander Schwartz
+    ------
+    17 Mai 2013
+
+Basic Hibernate Setup
+
+%{toc|fromDepth=2}
+
+* What is Bean Validation / Hibernate Validator?
+
+    Hibernate provides also a Bean Validation implementation. It allows you to validate data when you persist it.
+    But you can use it to validate data in other places (i.e. JSF).
+
+* Why you should use it
+
+** The intended used for JPA
+
+    It's a standard implementation as part of the Java Enterprise Edition. You can create custom validators and
+    re-use them in different projects.
+
+* How to use it
+
+** Setup maven project
+
+    Add the following to you <<<pom.xml>>>.
+
+%{snippet|id=hibernatevalidator1|url=file:pom.xml}
+
+    Please note that the libraries are marked as <<<provided>>>, as they will be included in the JBoss application
+    server already.
+
+    To activate it in your project you need to add a file <<<META/valiation.xml>>>.
+
+** Prepare project for Localization when using a web application
+
+    Bean validation will use by default the Locale of the system to interpolate messages. In order to show
+    messages from Bean Validation in the language of the user, this project uses the following customization:
+
+    <<Step 1:>> add an extended interpolator for the messages, see <<<LocaleResourceBundleMessageInterpolator>>>.
+    This will use a (thread local) locale to trigger the correct localization.
+
+%{snippet|id=hibernatevalidator5|url=file:src/main/java/de/ahus1/util/LocaleResourceBundleMessageInterpolator.java}
+
+    This needs to be registered in the <<<validation.xml>>> file:
+
+%{snippet|id=hibernatevalidator7|url=file:src/main/resources/META-INF/validation.xml}
+
+    <<Step 2:>> Add a filter that for every request sets the locale based on the browser's locale in <<<LocaleFilter>>>.
+
+%{snippet|id=hibernatevalidator6|url=file:src/main/java/de/ahus1/util/LocaleFilter.java}
+
+	Please note that this filter might need to be extended to do more complex handling of the brower's locale.
+	The user can give an list of locales with a priority. This can then be matched against the supported locales
+	of the application. There should also be a fallback to a defined locale specific to the application
+	when there is no match at all.
+
+** Prepare classes for validation
+
+    Please use annotations on your classes to validate them. See this sample from <<<Sighting.java>>>.
+
+%{snippet|id=hibernatevalidator2|url=file:src/main/java/de/ahus1/model/sighting/Sighting.java}
+
+    The custom error messages can be internationalized by using curly brackets like in the example above.
+    The texts are in <<<ValidationMessages_[en|de].properties>>>.
+
+%{snippet|id=hibernatevalidator3|url=file:src/main/resources/ValidationMessages_de.properties}
+
+%{snippet|id=hibernatevalidator4|url=file:src/main/resources/ValidationMessages_en.properties}
+
+* Where to learn more about it
+
+    You can find the official documentation on Bean Validation and Hibernate Validator at TODO.
+
+* Tips and Tricks
+
+    ... to come ...
+
+    TODO

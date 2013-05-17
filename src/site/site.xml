@@ -25,7 +25,8 @@
     </menu>
 
     <menu name="Server">
-        <item name="Basic Hibernate Testing" href="server/rec_hibernate_basic.html" />
+        <item name="Basic Hibernate" href="server/rec_hibernate_basic.html" />
+        <item name="Hibernate Validation" href="server/rec_hibernate_validation.html" />
     </menu>
 
     <menu name="Testing">

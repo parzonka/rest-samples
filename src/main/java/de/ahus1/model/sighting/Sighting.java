@@ -41,9 +41,11 @@ public class Sighting extends AbstractEntity implements HasId {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long sightingId;
 
+  // START SNIPPET: hibernatevalidator2
   @NotNull
   @Size(min = 2, message = "{sighting.memo.minLength}")
   private String sightingMemo;
+  // END SNIPPET: hibernatevalidator2
 
   @ManyToOne
   @JoinColumn(name = "vesselId")

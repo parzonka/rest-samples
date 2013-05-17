@@ -97,11 +97,6 @@
       <artifactId>jboss-annotations-api_1.1_spec</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
     <!-- START SNIPPET: hibernatebasic1 -->
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
@@ -115,12 +110,19 @@
       <scope>provided</scope>
     </dependency>
     <!-- END SNIPPET: hibernatebasic1 -->
+    <!-- START SNIPPET: hibernatevalidator1 -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>4.1.0.Final</version>
       <scope>provided</scope>
     </dependency>
+    <!-- END SNIPPET: hibernatevalidator1 -->
     <dependency>
       <groupId>org.jboss.spec.javax.faces</groupId>
       <artifactId>jboss-jsf-api_2.0_spec</artifactId>

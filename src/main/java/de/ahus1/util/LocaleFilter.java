@@ -25,6 +25,7 @@ public class LocaleFilter implements Filter {
   public void destroy() {
   }
 
+  // START SNIPPET: hibernatevalidator6
   @Override
   public void doFilter(ServletRequest servletRequest,
       ServletResponse servletResponse, FilterChain chain) throws IOException,
@@ -37,6 +38,8 @@ public class LocaleFilter implements Filter {
       LocaleResourceBundleMessageInterpolator.clearLocale();
     }
   }
+
+  // END SNIPPET: hibernatevalidator6
 
   /**
    * Do nothing here.
