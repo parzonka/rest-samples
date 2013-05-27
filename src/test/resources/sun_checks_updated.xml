@@ -53,7 +53,10 @@
     <module name="FinalClass" />
     <module name="HideUtilityClassConstructor" />
     <module name="InterfaceIsType" />
-    <module name="VisibilityModifier" />
+    <module name="VisibilityModifier">
+      <!-- expectedException is used by JUnit 4 and needs to be a public variable -->
+      <property name="publicMemberPattern" value="^(serialVersionUID|expectedException)$" />
+    </module>
     <module name="ArrayTypeStyle" />
     <module name="UpperEll" />
   </module>

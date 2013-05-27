@@ -1,0 +1,75 @@
+    ------
+    Basic Arquillian Testing
+    ------
+    Alexander Schwartz
+    ------
+    27 May 2013
+
+Basic Arquillian Testing
+
+%{toc|fromDepth=2}
+
+* What is Arquillian?
+
+    Arquillian provides you with 'in container testing', that is: it will provide all the things you need to package
+    a custom mini version of your application, deploy it to an application server, and then run the tests.
+
+* Why you should use it
+
+** Why to test within the container
+
+    When testing within the container this gives you all the the nice things like a transaction manager, full access
+    to persistence, and fully working CDI contexts.
+
+** Why not to test within a container
+
+    When you think you will need a container this might indicate that you haven't written testable code in the first
+    place. Please verify if you can rework your tests to work without a container to test their functionality. This
+    should be true for most if not all of the business functionality you have in your project.
+
+    The tests within the container will run a lot slower than outside of the container as there is additional overhead.
+
+    A container will start within seconds, but a simple JUnit test can be run within a few milliseconds.
+
+* How to use it
+
+** Update your pom.xml file
+
+    Please some dependencies to your project's <<<pom.xml>>>:
+
+%{snippet|id=arquillianbasic1|url=file:pom.xml}
+
+%{snippet|id=arquillianbasic2|url=file:pom.xml}
+
+** Setup your environment
+
+    You need to have JBoss installed somewhere on the path. The location is given as an envrionment setting like this:
+
++----+
+JBOSS_HOME=D:\jee\jboss-as-7.1.1.Final
++----+
+
+** Write your test cases
+
+    <<<SimpleArquillianTest.java>>> gives a minimal overview of a test class.
+
+%{snippet|id=arquillianbasic3|url=file:src/test/java/de/ahus1/rest/endpoint/test/SimpleArquillianTest.java}
+
+    When adding asserts of any kind, please use the ones that have a String as the first parameter. This allows you to provide a meaningful
+    message of what is the expected outcome of the test. This is then also shown when this test fails, and it is an invaluable
+    piece of information for the developer to come to fix the JUnit test.
+
+    Please note: JUnit tests need (inline) documentation like every other piece of code.
+
+** Running your tests
+
+    You run them like any other JUnit test. Please ensure that JBoss is currently not running on your machine.
+
+* Where to learn more about it
+
+    Visit the homepage {{http://arquillian.org/}} to find out more.
+
+* Tips and Tricks
+
+   ...
+

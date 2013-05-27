@@ -11,6 +11,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import de.ahus1.model.general.AbstractEntity;
+import de.ahus1.model.general.HasId;
+import de.ahus1.model.general.HasVersion;
 import de.ahus1.model.general.Translation;
 
 /**
@@ -19,6 +22,7 @@ import de.ahus1.model.general.Translation;
  * @author Alexander Schwartz 2012
  * 
  */
+// START SNIPPET arquillianbasic3
 @RunWith(Arquillian.class)
 public class SimpleArquillianTest {
 
@@ -30,6 +34,8 @@ public class SimpleArquillianTest {
   @Deployment
   public static JavaArchive createDeployment() {
     return ShrinkWrap.create(JavaArchive.class).addClass(Translation.class)
+        .addClass(HasId.class).addClass(AbstractEntity.class)
+        .addClass(AbstractEntity.Extended.class).addClass(HasVersion.class)
         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
   }
 
@@ -37,7 +43,10 @@ public class SimpleArquillianTest {
    * A first sample test without real functionality.
    */
   @Test
-  public void shouldCreateGreeting() {
-    assertThat("we need something that just works", true, equalTo(true));
+  public void testGetterSetter() {
+    Translation t = new Translation();
+    t.setTranslationId((long) 1);
+    assertThat("translation ID is the same", t.getId(), equalTo((long) 1));
   }
 }
+// END SNIPPET arquillianbasic3
