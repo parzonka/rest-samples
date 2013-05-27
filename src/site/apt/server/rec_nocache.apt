@@ -1,0 +1,63 @@
+    ------
+    Cache Prevention
+    ------
+    Alexander Schwartz
+    ------
+    17 Mai 2013
+
+Cache Prevention
+
+%{toc|fromDepth=2}
+
+* What is Cache Prevention?
+
+	You can send the HTTP Header <<<Cache-Control>>> to instruct the browser or intermediate proxies to tune
+	the caching of resources the way you need it.
+
+* Why you should use it
+
+** When you are developing
+
+    If you serve resources like HTML and JavaScript files to the browser, the browser can cache them. To force
+    a reload you can use <<<Shift-Reload>>> load the page.
+
+    But this forceful reload won't work if you load resources using async AJAX requests. This is where cache
+    control headers can help in developing.
+
+** When you deploy to production
+
+    The way the mechanism works now is the the browser will validate each requested resource on every request.
+
+    If the resource hasn't changed, the server responds with a zero sized response. Otherwise the resource
+    is served to the client.
+
+    This will increase the number of requests that are triggered for the server, but it ensures that always the
+    latest resource is present with the client - and that the status at the client is always consistent.
+
+    If you have a most recent browser that supports HTML5 cache manifests, you might want to use them to reduce
+    the number of requests triggered by the client. With HTML5 cache manifests the client will only check if the
+    cache manifest has changed and will then retrieve all resources in advance. This is quite nice in production,
+    but it will be an obstacle in development.
+
+* How to use it
+
+** Setup a servlet filter
+
+    This can easily be done in s Servlet Filter like <<<NoCacheFilter>>>:
+
+%{snippet|id=nocache1|url=file:src/main/java/de/ahus1/util/NoCacheFilter.java}
+
+%{snippet|id=nocache2|url=file:src/main/java/de/ahus1/util/NoCacheFilter.java}
+
+    You can then use it in the <<<web.xml>>> file to make it work for all served HTML and JavaScript resources
+
+%{snippet|id=nocache3|url=file:src/main/webapp/WEB-INF/web.xml}
+
+* Where to learn more about it
+
+    TODO
+
+* Tips and Tricks
+
+    If you have setup the Cache Control headers not from the start, you should clear your browser cache to
+    avoid mixed results from old information with no Cache Control headers in your browser's cache.

@@ -12,6 +12,16 @@
     <filter-name>locale</filter-name>
     <filter-class>de.ahus1.util.LocaleFilter</filter-class>
   </filter>
+  <!-- START SNIPPET: nocache3 -->
+  <filter-mapping>
+    <filter-name>nocache</filter-name>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>nocache</filter-name>
+    <url-pattern>*.js</url-pattern>
+  </filter-mapping>
+  <!-- END SNIPPET: nocache3 -->
   <filter-mapping>
     <filter-name>locale</filter-name>
     <url-pattern>/rest/*</url-pattern>
