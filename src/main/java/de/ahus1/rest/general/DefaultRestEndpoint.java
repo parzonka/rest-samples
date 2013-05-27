@@ -330,7 +330,10 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
   }
 
   /**
-   * Traverse object to pull lazy hibernate entities.
+   * Traverse object to pull lazy hibernate entities. There has been the idea of
+   * an extended entity manager that also exists outside of the transaction
+   * scope (see Java Magazin 06/2013). This sounded quite tempting, failed to
+   * work to join the transaction scope correctly.
    * 
    * @param object
    *          object to be traversed
