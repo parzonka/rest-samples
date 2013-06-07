@@ -62,9 +62,7 @@ At the moment you must have a local installation of JBoss available and the envi
 ## Todos
 
 1. provide a pure JAVA client for a REST service
-2. automatic test cases missing (Jasmine testing now done)
-3. Make the arquillian tests work without installing JBoss 7 locally first.
-4. Add translation JS Frontend
+2. Make the arquillian tests work without installing JBoss 7 locally first.
 
 Use Java 32bit to use the HTML visual page editor
 https://issues.jboss.org/browse/JBIDE-2720

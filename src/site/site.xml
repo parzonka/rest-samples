@@ -24,6 +24,10 @@
       <item name="Maven Site Documentation" href="documentation/rec_maven_site.html" />
     </menu>
 
+    <menu name="Client">
+        <item name="Translations" href="client/rec_i18next.html" />
+    </menu>
+
     <menu name="Server">
         <item name="Basic Hibernate" href="server/rec_hibernate_basic.html" />
         <item name="Hibernate Validation" href="server/rec_hibernate_validation.html" />

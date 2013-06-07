@@ -1,0 +1,27 @@
+{
+	"main":{
+		"title":"REST Samples"
+	},
+	"sidebar":{
+		"title":"Menü"
+	},
+	"vessel":{
+		"main":"Schiffstypen"
+	},
+	"timezone":{
+		"main":"Zeitzonen"
+	},
+	"sighting":{
+		"main":"Sichtungen"
+	},
+	"translation":{
+		"new":"Neue Übersetzung"
+	},
+	"glb":{
+		"cancel":"Abbrechen",
+		"save":"Speichern",
+		"add":"Hinzufügen",
+		"name":"Bezeichnung",
+		"action":"Aktion"
+	}
+}

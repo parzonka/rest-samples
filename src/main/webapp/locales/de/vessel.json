@@ -1,0 +1,9 @@
+{
+	"vessel":{
+		"new":{"title":"Neuer Schiffstyp"},
+		"edit":{"title":"Schiffstyp bearbeiten"},
+		"name":"Name",
+		"heading":"Schiffstypen pflegen",
+		"list":"Schiffstypen"
+	}
+}

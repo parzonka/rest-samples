@@ -1,88 +1,93 @@
-<h1 id="vessel">Schiffstypen pflegen</h1>
+<h1 id="vessel" data-bind="text: ko.i18n('vessel:vessel.heading')"></h1>
 
 <form class="form-horizontal"
-	data-bind="fadeVisible: vesselList() == null">
-	<fieldset data-bind="with: vessel">
-		<!-- ko if: vesselId  -->
-		<legend>Schiffstyp bearbeiten</legend>
-		<!-- /ko -->
-		<!-- ko ifnot: vesselId  -->
-		<legend>Neuer Schiffstyp</legend>
-		<!-- /ko -->
+  data-bind="fadeVisible: vesselList() == null">
+  <fieldset data-bind="with: vessel">
+    <!-- ko if: vesselId  -->
+    <legend data-bind="text: ko.i18n('vessel:vessel.edit.title')"></legend>
+    <!-- /ko -->
+    <!-- ko ifnot: vesselId  -->
+    <legend data-bind="text: ko.i18n('vessel:vessel.new.title')"></legend>
+    <!-- /ko -->
 
-		<div class="row-fluid">
+    <div class="row-fluid">
 
-			<span class="control-group" data-bind="message: $data"></span>
+      <span class="control-group" data-bind="message: $data"></span>
 
-			<div class="control-group">
-				<label class="control-label" for="bezeichnung">Name</label>
-				<div class="controls" data-bind="foreach: vesselName">
-					<div class="input-append">
-						<input type="text" class="input-prepend"
-							data-bind="value: textString, attr: {id: 'vesselName' + $index()}" />
-					</div>
-					<div class="input-prepend">
-						<select class="input-mini" data-bind="value: textLanguage">
-							<option>de</option>
-							<option>en</option>
-						</select>
-					</div>
-					<a class="btn btn-small removeLanguage" href="#" title="Entfernen"
-						data-bind="click: $root.currentSection().data().deleteLanguage, attr: {id: 'removeLanguage' + $index()}">
-						<i class="icon-trash"></i>
-					</a> <br />
-				</div>
-				<div class="controls">
-					<a class="btn" href="#" id="addLanguage"
-						data-bind="click: $root.currentSection().data().addLanguage">
-						Neue Übersetzung </a>
-				</div>
+      <div class="control-group">
+        <label class="control-label" for="bezeichnung"
+          data-bind="text: ko.i18n('vessel:vessel.name')"></label>
+        <div class="controls" data-bind="foreach: vesselName">
+          <div class="input-append">
+            <input type="text" class="input-prepend"
+              data-bind="value: textString, attr: {id: 'vesselName' + $index()}" />
+          </div>
+          <div class="input-prepend">
+            <select class="input-mini" data-bind="value: textLanguage">
+              <option>de</option>
+              <option>en</option>
+            </select>
+          </div>
+          <a class="btn btn-small removeLanguage" href="#"
+            title="Entfernen"
+            data-bind="click: $root.currentSection().data().deleteLanguage, attr: {id: 'removeLanguage' + $index()}">
+            <i class="icon-trash"></i>
+          </a> <br />
+        </div>
+        <div class="controls">
+          <a class="btn" href="#" id="addLanguage"
+            data-bind="click: $root.currentSection().data().addLanguage, text: ko.i18n('translation.new')">
+          </a>
+        </div>
 
-			</div>
-		</div>
-		<button type="button" id="save" class="btn-primary btn"
-			data-bind="click: $parent.saveVessel">Speichern</button>
-
-		<a href="#" class="btn" data-bind="click: $parent.goToMain">Abbrechen</a>
-	</fieldset>
+      </div>
+    </div>
+    <button type="button" id="save" class="btn-primary btn"
+      data-bind="click: $parent.saveVessel, text: ko.i18n('glb.save')"></button>
+    <a href="#" class="btn"
+      data-bind="click: $parent.goToMain, text: ko.i18n('glb.cancel')"></a>
+  </fieldset>
 </form>
 
 <form class="form-horizontal"
-	data-bind="fadeVisible: vesselList() != null">
-	<fieldset>
-		<legend>Schiffstypen</legend>
+  data-bind="fadeVisible: vesselList() != null">
+  <fieldset>
+    <!-- START SNIPPET: i18next5 -->
+    <legend data-bind="text: ko.i18n('vessel:vessel.list')"></legend>
+    <!-- END SNIPPET: i18next5 -->
 
-		<button id="addButton" type="button" class="btn-primary btn"
-			data-bind="click: goToAdd">Hinzufügen</button>
+    <button id="addButton" type="button" class="btn-primary btn"
+      data-bind="click: goToAdd, text: ko.i18n('glb.add')"></button>
 
-		<p />
+    <p />
 
-		<div class="row-fluid">
-			<table class="table table-bordered" id="vesselList">
-				<thead>
-					<tr>
-						<th>Bezeichnung</th>
-						<th>Aktion</th>
-					</tr>
-				</thead>
-				<tbody data-bind="foreach: vesselList">
-					<tr>
-						<td data-title="Bezeichnung" data-bind="text: vesselName" />
-						<td data-title="Aktion">
-							<div class="btn-group">
-								<a class="btn btn-small" href="#" title="Bearbeiten" name="edit"
-									data-bind="click: $parent.goToEdit"> <i class="icon-edit"></i>
-								</a> <a class="btn btn-small" href="#" title="Entfernen"
-									name="delete" data-bind="click: $parent.deleteVessel"> <i
-									class="icon-trash"></i>
-								</a>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<p />
-		</div>
+    <div class="row-fluid">
+      <table class="table table-bordered" id="vesselList">
+        <thead>
+          <tr>
+            <th data-bind="text: ko.i18n('glb.name')"></th>
+            <th data-bind="text: ko.i18n('glb.action')"></th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: vesselList">
+          <tr>
+            <td data-title="Bezeichnung" data-bind="text: vesselName" />
+            <td data-title="Aktion">
+              <div class="btn-group">
+                <a class="btn btn-small" href="#" title="Bearbeiten"
+                  name="edit" data-bind="click: $parent.goToEdit"> <i
+                  class="icon-edit"></i>
+                </a> <a class="btn btn-small" href="#" title="Entfernen"
+                  name="delete" data-bind="click: $parent.deleteVessel">
+                  <i class="icon-trash"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p />
+    </div>
 
-	</fieldset>
+  </fieldset>
 </form>

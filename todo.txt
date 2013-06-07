@@ -1,7 +1,13 @@
 ﻿  * Backend-Validierung
   * Anzeige im Frontend
-  * automatische Testfälle
+
+  * Query DSL
 
   * Tooltips für Hotkeys
 
-  * add no cache filter for all resources, to avoid caching of resources during development
+  * document "less" (less is a superset of CSS - alternative: SASS, is not a superset of less)
+    there is an exclipse plugin for less
+    http://www.normalesup.org/~simonet/soft/ow/eclipse-less.fr.html
+
+    enable live css preview in debug console of less
+

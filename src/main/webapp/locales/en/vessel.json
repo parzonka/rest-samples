@@ -1,0 +1,9 @@
+{
+	"vessel":{
+		"new":{"title":"New Vesseltype"},
+		"edit":{"title":"Edit Vesseltype"},
+		"name":"Name",
+		"heading":"Maintain Vesseltypes",
+		"list":"Vesseltypes"
+	}
+}

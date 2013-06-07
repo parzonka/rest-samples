@@ -67,6 +67,7 @@ require.config({
     jasmine : 'libs/jasmine',
     sinon : 'libs/sinon',
     moment : 'libs/moment',
+    i18next : 'libs/i18next.amd.withJQuery-1.6.3',
     "jasmine-jquery" : 'libs/jasmine-jquery',
     "jasmine-junit" : 'libs/jasmine.junit_reporter',
     "jasmine-console" : 'libs/jasmine.console_reporter'
@@ -80,7 +81,7 @@ less = {
 require([ "knockout", "menu", "hasher", "crossroads", "section", "test",
 // starting here: only loading, passing as parameter
 "stringTemplateEngine", "text", "bootstrap", "knockout.extensions", "less",
-    "jquery.validate", "knockout.validation" ],
+    "jquery.validate", "knockout.validation", "knockout.i18n" ],
     function(ko, menu, hasher, crossroads, Section, test) {
 
       // call this from the console to enable automatic refreshing of less
@@ -172,7 +173,6 @@ require([ "knockout", "menu", "hasher", "crossroads", "section", "test",
       };
 
       ko.applyBindings(m);
-
       test();
 
     });

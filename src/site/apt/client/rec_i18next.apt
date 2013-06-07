@@ -1,0 +1,111 @@
+    ------
+    Client side translations with i18next
+    ------
+    Alexander Schwartz
+    ------
+    6 June 2013
+
+Client side translations with i18next
+
+%{toc|fromDepth=2}
+
+* What is i18next?
+
+   i18next is a JavaScript library providing you with a translation mechanism (internationalization).
+
+* Why you should use it
+
+   i18next allows you to extract texts to resource files while using place holders in JavaScript and HTML code.
+   The place holders are then replaced with the text of the chosen language.
+
+   This enables you to
+
+      * add a new language by translating a resource file
+
+      * providing consistent naming throughout your application by using the same place holders in multiple places
+
+   i18next has already support to asynchronously load translations and also for modularization of translations
+   (called <<<namespaces>>> here).
+
+* How to use it
+
+** Adding the module
+
+   There is a AMD enabled version that is prepared to work with jQuery. Please use this to include it in your
+   <<<main.js>>> for requireJS.
+
+   The small wrapper file <<<knockout.i18n.js>>> connects knockout with the translation library. Please have a look
+   at the commented source code.
+
+%{snippet|id=i18next1|url=file:src/main/webapp/js/knockout.i18n.js}
+
+** Using translations in web pages and JavaScript modules
+
+   The following snippet provides translation for the Menu heading in the main page
+
+%{snippet|id=i18next2|url=file:src/main/webapp/index.html}
+
+   This is used to provide translated menu entries in <<<menu.js>>>
+
+%{snippet|id=i18next3|url=file:src/main/webapp/js/menu.js}
+
+   The translations are then tiven in the file <<<translations.json>>> (one for each language) in JSON format:
+
++------+
+{
+	"sidebar":{
+		"title":"Menü"
+	},
+	"vessel":{
+		"main":"Schiffstypen"
+	},
+	"timezone":{
+		"main":"Zeitzonen"
+	},
+	"sighting":{
+		"main":"Sichtungen"
+	},
+	...
+}
++------+
+
+** Using namespaces to make translations modularizable
+
+   If you don't want to have one big file with translations you can split the translation i.e. by use case. This will
+   reduce the amount of data downloaded by the client, might help scaling in a bigger team (you won't interfere with each other
+   when you work on different use cases).
+
+   This can be achieved by using namespaces as supported by i18next. Whenever we load the resources of a use case, we also
+   add the appropriate namespace.
+
+%{snippet|id=i18next4|url=file:src/main/webapp/js/section.js}
+
+   You can then place all use case specific translations to a separated file called like the usecase itself. This has
+   been implemented for the Vessel use case. The standard prefix is a colon for the namespace. A sample from vessel.html:
+
+%{snippet|id=i18next5|url=file:src/main/webapp/templates/vessel.html}
+
+** Making the language switchable
+
+   You'll need a control on your page that will be liked to a variable in your model (taken from <<<index.html>>>:
+
+%{snippet|id=i18next6|url=file:src/main/webapp/index.html}
+
+   The variable in the model is in <<<menu.js>>>:
+
+%{snippet|id=i18next7|url=file:src/main/webapp/js/menu.js}
+
+* Where to learn more about it
+
+   Please visit the project's home page for more information: {{http://www.i18next.com}}
+
+* Tips and Tricks
+
+    If you switch the language, i18next will load the resource files for the translations again form the server. When
+    developing, this can be a feature; you can update the translation file and just switch the language back and forth
+    to immediately see your changes.
+
+    If the resource hasn't changed, a zero-sized 304 response will be returned by the server.
+    In a production environment this might still have a (small) performance impact. i18next provides you with possibilities to store
+    translations locally, but changing the HTTP cache headers might solve the problem for you as well. Please see {{{./../server/rec_nocache.html}Cache Prevention}}
+    for more information.

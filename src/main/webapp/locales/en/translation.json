@@ -1,0 +1,27 @@
+{
+	"main":{
+		"title":"REST Samples"
+	},
+	"sidebar":{
+		"title":"Sidebar"
+	},
+	"vessel":{
+		"main":"Vessels"
+	},
+	"timezone":{
+		"main":"Timezones"
+	},
+	"sighting":{
+		"main":"Sightings"
+	},
+	"translation":{
+		"new":"New Translation"
+	},
+	"glb":{
+		"cancel":"Cancel",
+		"save":"Save",
+		"add":"Add",
+		"name":"Name",
+		"action":"Action"
+	}
+}
