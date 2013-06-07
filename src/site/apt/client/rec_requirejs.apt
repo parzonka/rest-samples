@@ -1,0 +1,78 @@
+    ------
+    Modularization of JavaScript application with requireJS
+    ------
+    Alexander Schwartz
+    ------
+    6 June 2013
+
+Modularization of JavaScript application with requireJS
+
+%{toc|fromDepth=2}
+
+* What is requireJS?
+
+   requireJS is a JavaScript library that allows you load JavaScript at runtime when needed. It ensures that each resource
+   is loaded only once, and that your code is only called once the resource is available. Any dependencies that the
+   requested module might have are resolved and loaded as well.
+
+* Why you should use it
+
+   Modularization of your application into smaller files provides you the chance to work in a bigger team. The modules
+   you write can be re-used across projects, especially when dependency resolving is in place.
+
+   As you only load the resources when you need them, the startup time is reduced.
+
+   RequireJS also loaded the resource asynchronously, this will increase the startup time as well.
+
+   We use it here for single page apps - and this is where it gives the greatest benefit. Once you change
+   to a different page you'll need to load the resources again.
+
+* How to use it
+
+** Setup the infrastructure
+
+   Instead of a lot of referenced JavaScript resources in you HTML files, use only one line referencing the
+   JavaScript file plus the startup script (here: <<<main.js>>>):
+
+%{snippet|id=requirejs1|url=file:src/main/webapp/index.html}
+
+   In the <<<main.js>>> you provide with <<<shim>>> dependencies for libraries that don't support AMD out of the box.
+   An example for the is the jQuery library. You can also customize the dependencies for libraries like knockout.
+
+%{snippet|id=requirejs2|url=file:src/main/webapp/js/main.js}
+
+   In the same file you also map the names of the libraries to file names. This allows you to reference a minified
+   JavaScript file.
+
+%{snippet|id=requirejs3|url=file:src/main/webapp/js/main.js}
+
+** Writing your own modules
+
+    This is a very simple layout of a module. Please note the <<<define>>> at the beginning, that introduces a module.
+    Then we list the dependencies and pass the dependencies as a parameter to a function.
+
+%{snippet|id=requirejs4|url=file:src/main/webapp/js/modules/index.js}
+
+** Loading resources when you need them
+
+    Declaring your resources when you need them is cleanest way to go. If you have conditional dependencies, you
+    can ask for additional resources to be loaded at any time like we do this using the <<<require>>> directive.
+
+    In this example from the section loading mechanism we lazily load some resources. Once they are loaded, we
+    continue initializing them. This also shows that you can also load text resources as well (these are used
+    for HTML templates here).
+
+%{snippet|id=requirejs5|url=file:src/main/webapp/js/section.js}
+
+* Where to learn more about it
+
+   Please visit the project's home page for more information: {{http://www.requirejs.org}}
+
+* Tips and Tricks
+
+   When referencing in the paths the JavaScript libraries you can reference a content delivery network (CDN)
+   directly. This can help you offloading bandwidth from your server to someone else. When you use a popular
+   CDN the resources might have already been loaded by the client from a previous site.
+
+   RequireJS also directly supports specifying a second fallback URL when the CDN is not available. Please note
+   that if the CDN returns after a long timeout, the site will stall and will be non-responsive for the user.

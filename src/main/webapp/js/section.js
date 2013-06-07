@@ -18,6 +18,7 @@ define([ "knockout", "crossroads", "hasher", "i18next" ], function(ko,
          */
         i18next.loadNamespace(self.template, function() {
           // END SNIPPET: i18next4
+          // START SNIPPET: requirejs5
           require([ "modules/" + name,
               "text!../templates/" + self.template + ".html" ], function(
               Module, template) {
@@ -27,6 +28,7 @@ define([ "knockout", "crossroads", "hasher", "i18next" ], function(ko,
             crossroads.resetState();
             crossroads.parse(hasher.getHash());
           });
+          // END SNIPPET: requirejs5
         });
       }
     };

@@ -1,3 +1,4 @@
+// START SNIPPET: requirejs4
 define([ 'knockout' ], function(ko) {
 
   function IndexViewModel() {
@@ -9,3 +10,4 @@ define([ 'knockout' ], function(ko) {
   return IndexViewModel;
 
 });
+//END SNIPPET: requirejs4

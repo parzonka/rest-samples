@@ -1,3 +1,4 @@
+// START SNIPPET: requirejs2
 require.config({
   shim : {
     jquery : {
@@ -9,6 +10,7 @@ require.config({
     knockout : {
       deps : [ 'jquery' ]
     },
+    // END SNIPPET: requirejs2
     'knockout.validation' : {
       deps : [ 'knockout' ]
     },
@@ -51,8 +53,10 @@ require.config({
     }
   },
 
+  // START SNIPPET: requirejs3
   paths : {
     jquery : 'libs/jquery.min',
+    // END SNIPPET: requirejs3
     'jquery.validate' : 'libs/jquery.validate',
     hasher : 'libs/hasher',
     crossroads : 'libs/crossroads',
