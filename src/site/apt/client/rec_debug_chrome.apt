@@ -1,0 +1,53 @@
+    ------
+    Debugging JavaScript with Google Chrome
+    ------
+    Alexander Schwartz
+    ------
+    6 June 2013
+
+Debugging JavaScript with Google Chrome
+
+%{toc|fromDepth=2}
+
+* What is Chrome Developer Tools for Java?
+
+   The "Chrome Developer Tools for Java" is an Eclipse plugin that allows you to remote-debug JavaScript
+   in Chrome.
+
+* Why you should use it
+
+   Debugging helps you be executing your code line by line and seeing variables and in this case also
+   the web front end change. You can set breakpoints to stop execution where you want it to be stopped.
+   You can even push an updated version of your JavaScript to the browser without the need to restart
+   your (single page) web app.
+
+* How to use it
+
+** Installing the plugin
+
+   Please install the plugin as described here {{http://code.google.com/p/chromedevtools/wiki/HowToInstall}}
+   into Eclipse. You will need to restart Eclipse at the end of the installation.
+
+** Setup a debug configuration
+
+   Please the instructions on the tutorial on how to do this: {{http://code.google.com/p/chromedevtools/wiki/DebuggerTutorial}}.
+
+   First setup Chrome to allow remote debugging with the command line option. Then create a debug
+   configuration and attach the original project to it (this will allow you to jump directly to your
+   original source code when debugging).
+
+   Once you have fixed/changed your JavaScript code, you can push it to the browser using the context menu.
+
+* Where to learn more about it
+
+   Please visit the project's home page for more information: {{http://code.google.com/p/chromedevtools/}}
+   
+   As usual there's also information on Stackoverflow: {{http://stackoverflow.com/questions/609316/debug-javascript-in-eclipse}}
+   
+   This should also work in an IDE like IntelliJ.   
+
+* Tips and Tricks
+
+   The connection to the debugger will close once you open the debugger in Chrome directly. Therefore
+   keep it closed if you want to do remote debugging.
+

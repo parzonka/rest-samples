@@ -27,6 +27,7 @@
     <menu name="Client">
         <item name="Modularization" href="client/rec_requirejs.html" />
         <item name="Translations" href="client/rec_i18next.html" />
+        <item name="Debugging JavaScript with Chrome" href="client/rec_debug_chrome.html" />
     </menu>
 
     <menu name="Server">
