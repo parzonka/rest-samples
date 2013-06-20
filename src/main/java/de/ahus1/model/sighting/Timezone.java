@@ -23,12 +23,6 @@ public class Timezone extends AbstractEntity implements HasId {
 
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Show all elements of this class.
-   */
-  public interface Extended extends AbstractEntity.Extended {
-  }
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long timezoneId;
