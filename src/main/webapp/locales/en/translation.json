@@ -17,6 +17,10 @@
 	"translation":{
 		"new":"New Translation"
 	},
+	"appCache": {
+		"update":"Check for updates",
+		"swap":"Apply Update"
+	},
 	"glb":{
 		"cancel":"Cancel",
 		"save":"Save",

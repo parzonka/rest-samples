@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  xmlns="http://java.sun.com/xml/ns/javaee"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
   <display-name>rest-server-sample</display-name>
@@ -34,4 +34,17 @@
     <servlet-name>javax.ws.rs.core.Application</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
+  <!-- START SNIPPET: appcache1 -->
+  <servlet>
+    <servlet-name>cachemanifest</servlet-name>
+    <init-param>
+      <param-name>paths</param-name>
+      <param-value>/ /js/libs /js /css /css/libs /js/modules /templates</param-value>
+    </init-param>
+  </servlet>
+  <!-- END SNIPPET: appcache1 -->
+  <mime-mapping>
+    <extension>woff</extension>
+    <mime-type>application/font-woff</mime-type>
+  </mime-mapping>
 </web-app>

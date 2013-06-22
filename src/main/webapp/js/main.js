@@ -110,6 +110,37 @@ require([ "knockout", "menu", "hasher", "crossroads", "section", "test",
 
         self.menu = menu;
 
+        // START SNIPPET: appcache2
+
+        // old browsers might not have the feature application cache
+        if (window.applicationCache) {
+          self.cache = {
+            status : ko.observable(window.applicationCache.status)
+          };
+
+          $(window.applicationCache).bind(
+              "checking noupdate downloading progress cached updateready",
+              function(e) {
+                self.cache.status(window.applicationCache.status);
+              });
+        } else {
+          self.cache = {
+            status : ko.observable(0)
+          };
+        }
+
+        // no harm done here when browser's don't support applicationCache
+        // as this method will not be called anyway in this case.
+        self.cache.update = function(e) {
+          window.applicationCache.update();
+        };
+
+        self.cache.swap = function(e) {
+          window.applicationCache.swapCache();
+          window.location.reload(false);
+        };
+        // END SNIPPET: appcache2
+
       }
 
       var m = new ViewModel();

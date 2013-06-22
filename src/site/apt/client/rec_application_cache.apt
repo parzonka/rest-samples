@@ -1,0 +1,82 @@
+    ------
+    Caching resources on the client with a Cache Manifest
+    ------
+    Alexander Schwartz
+    ------
+    20 June 2013
+
+Caching resources on the client with a Cache Manifest
+
+%{toc|fromDepth=2}
+
+* What is a Cache Manifest?
+
+   In the cache manifest you can specify what resources (URLs) the client should cache for your web page.
+
+* Why you should use it
+
+   Whenever the browser access the page, it will only check the cache manifest to find out if any of the
+   cached resources has been changed. This might reduce your server load by using fewer requests and speed
+   up clients.
+
+   Also all resources for the client will be pre-fetched, enabling a faster application.
+
+* How to use it
+
+** Prepare the web page
+
+   The web page must start like this to enable it:
+
++-----+
+<!DOCTYPE html>
+<html lang="en" manifest="cache.appcache">
+...
++-----+
+
+   As soon as the browser recognizes it, it will prefetch and store the application data locally. Browsers like Google Chrome
+   will ask the user if he wants to save the data locally.
+
+   On every visit, the browser will check the cache manifest again and will re-load the contents. To check for application
+   updates via JavaScript see below.
+
+** Create a Cache Manifest (dynamically)
+
+   The class <<<CacheManifest>>> creates a Cache Manifest with all the files that exist in a specified directory.
+   The according to its default behaviour it will be available at the URL <<</cache.appcache>>> within you application.
+   You can specify the paths that should be part of the cache in you <<<web.xml>>>:
+
+%{snippet|id=appcache1|url=file:src/main/webapp/WEB-INF/web.xml}
+
+   The resulting Cache Manifest will look like this:
+
++------+
+CACHE MANIFEST
+CACHE:
+/rest-samples/index.html
+...
+NETWORK:
+*
+# hash:c3349f536d42c29210a750b95d4040afed081a8315ca7fcecd9cb7ad956d7f6e
++------+
+
+** Check for new updates on the server via JavaScript (and switch on user's request)
+
+   You can prepare you application's model with a status code and actions to check the cache status
+   of you application. You'll also ensure like this to receive all updates of the application cache (as the browser
+   will download the information asynchronously).
+
+%{snippet|id=appcache2|url=file:src/main/webapp/js/main.js}
+
+   You are now able to create a view for the model you've just created:
+
+%{snippet|id=appcache3|url=file:src/main/webapp/index.html}
+
+* Where to learn more about it
+
+   Please visit the project's home page for more information: {{http://en.wikipedia.org/wiki/Cache_manifest_in_HTML5}}
+
+* Tips and Tricks
+
+   You might want to disable caching for development mode. Please do this by commenting out the manifest entry in
+   <<<index.html>>> and cleaning all offline cache.
+

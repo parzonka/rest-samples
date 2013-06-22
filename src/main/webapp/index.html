@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="cache.appcache">
+<!-- remove manifest="cache.appcache" to simplify development -->
 <head>
 <meta charset="utf-8">
 <title>REST samples</title>
@@ -67,14 +68,25 @@ body {
         <div class="nav-collapse collapse">
           <p class="navbar-text pull-right">
             <!--  Logged in as <a href="#" class="navbar-link">Username</a> -->
+            <!-- START SNIPPET: appcache3 -->
+            <span class="tagcontainer"> <a
+              data-bind="visible: cache.status() != 4 && cache.status() != 0, click: cache.update, text: ko.i18n('appCache.update')"
+              class="navbar-link"></a> <a
+              data-bind="visible: cache.status() == 4, click: cache.swap, text: ko.i18n('appCache.swap')"
+              class="navbar-link"></a>
+            </span>
+            <!-- END SNIPPET: appcache3 -->
+
             <!-- START SNIPPET: i18next6 -->
-            <select class="input-mini" style="background-color: #1b1b1b"
+            <select class="input-mini navbar-link"
+              style="background-color: #1b1b1b"
               data-bind="value: menu.language">
               <option>de</option>
               <option>en</option>
             </select>
             <!-- END SNIPPET: i18next6 -->
           </p>
+
           <ul class="nav" data-bind="foreach: menu.folders">
             <li
               data-bind="css: { active: $data.link == $parent.menu.folder() }, attr: {id: $data.link} "><a
