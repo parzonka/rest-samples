@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import de.ahus1.model.general.AbstractEntity;
-import de.ahus1.model.general.HasId;
 
 /**
  * This holds information about available time zones.
@@ -19,7 +18,7 @@ import de.ahus1.model.general.HasId;
  */
 @XmlRootElement
 @Entity
-public class Timezone extends AbstractEntity implements HasId {
+public class Timezone extends AbstractEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -29,11 +28,6 @@ public class Timezone extends AbstractEntity implements HasId {
 
   @NotEmpty
   private String timezoneName;
-
-  @Override
-  public Object getId() {
-    return getTimezoneId();
-  }
 
   public Long getTimezoneId() {
     return timezoneId;

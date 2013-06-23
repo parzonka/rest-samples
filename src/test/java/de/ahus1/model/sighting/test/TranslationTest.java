@@ -24,7 +24,7 @@ public class TranslationTest {
     Long l = new Long(1);
     s.setTranslationId(l);
     assertEquals("getId() and getTranslationId() should return the same",
-        s.getId(), l);
+        s.getTranslationId(), l);
   }
 }
 // END SNIPPET junitbasic2

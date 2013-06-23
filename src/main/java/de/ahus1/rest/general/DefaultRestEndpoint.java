@@ -20,6 +20,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PersistenceUnitUtil;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -50,7 +51,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 
-import de.ahus1.model.general.HasId;
 import de.ahus1.model.general.ListView;
 
 /**
@@ -67,7 +67,7 @@ import de.ahus1.model.general.ListView;
  */
 @Produces({ "application/json", "text/xml" })
 @Consumes({ "application/json", "text/xml" })
-public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
+public abstract class DefaultRestEndpoint<ENTITY> {
 
   @Inject
   private HttpServletRequest httpServletRequest;
@@ -270,9 +270,7 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
   /**
    * Bind read-only entities connected to this object. We'll traverse the object
    * and find all {@link ManyToOne}, {@link OneToOne} and {@link OneToMany}
-   * annotations. TODO: All entities today need to implement the {@link HasId}
-   * interface. In the future this may become obsolete when using JPA's
-   * Metamodel.
+   * annotations.
    * 
    * @param object
    *          object to be traversed
@@ -313,8 +311,9 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
               bindReadOnlyEntities(o);
             } else {
               // fresh it from database
-              HasId id = (HasId) o;
-              Object r = em.find(o.getClass(), id.getId());
+              PersistenceUnitUtil puu = em.getEntityManagerFactory()
+                  .getPersistenceUnitUtil();
+              Object r = em.find(o.getClass(), puu.getIdentifier(o));
               String setMethodName = "set"
                   + f.getName().substring(0, 1).toUpperCase(Locale.ENGLISH)
                   + f.getName().substring(1);
@@ -513,10 +512,13 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
 
     em.persist(entity);
     em.flush();
+    PersistenceUnitUtil puu = em.getEntityManagerFactory()
+        .getPersistenceUnitUtil();
 
     UriBuilder locationBuilder = uriInfo.getBaseUriBuilder();
     locationBuilder.path(this.getClass());
-    URI childLocation = locationBuilder.path("{id}").build(entity.getId());
+    URI childLocation = locationBuilder.path("{id}").build(
+        puu.getIdentifier(entity));
 
     return Response.status(Response.Status.CREATED).location(childLocation)
         .build();
@@ -534,9 +536,11 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
    *          entity as received in the payload
    */
   private void matchIdAndEntity(Object key, ENTITY entity) {
-    if (entity.getId() == null) {
+    PersistenceUnitUtil puu = em.getEntityManagerFactory()
+        .getPersistenceUnitUtil();
+    if (puu.getIdentifier(entity) == null) {
       throw new IllegalArgumentException();
-    } else if (!entity.getId().equals(key)) {
+    } else if (!puu.getIdentifier(entity).equals(key)) {
       throw new IllegalArgumentException();
     }
   }

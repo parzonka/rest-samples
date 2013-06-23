@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.ahus1.model.general.AbstractEntity;
-import de.ahus1.model.general.HasId;
 import de.ahus1.model.general.HasVersion;
 import de.ahus1.model.general.Translation;
 
@@ -34,8 +33,8 @@ public class SimpleArquillianTest {
   @Deployment
   public static JavaArchive createDeployment() {
     return ShrinkWrap.create(JavaArchive.class).addClass(Translation.class)
-        .addClass(HasId.class).addClass(AbstractEntity.class)
-        .addClass(AbstractEntity.Extended.class).addClass(HasVersion.class)
+        .addClass(AbstractEntity.class).addClass(AbstractEntity.Extended.class)
+        .addClass(HasVersion.class)
         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
   }
 
@@ -46,7 +45,8 @@ public class SimpleArquillianTest {
   public void testGetterSetter() {
     Translation t = new Translation();
     t.setTranslationId((long) 1);
-    assertThat("translation ID is the same", t.getId(), equalTo((long) 1));
+    assertThat("translation ID is the same", t.getTranslationId(),
+        equalTo((long) 1));
   }
 }
 // END SNIPPET arquillianbasic3

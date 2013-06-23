@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.map.annotate.JsonView;
 
 import de.ahus1.model.general.AbstractEntity;
-import de.ahus1.model.general.HasId;
 import de.ahus1.model.general.IdView;
 import de.ahus1.model.general.Translation;
 
@@ -26,7 +25,7 @@ import de.ahus1.model.general.Translation;
  */
 @XmlRootElement
 @Entity
-public class Vessel extends AbstractEntity implements HasId {
+public class Vessel extends AbstractEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -59,11 +58,6 @@ public class Vessel extends AbstractEntity implements HasId {
 
   public void setVesselName(Translation vesselName) {
     this.vesselName = vesselName;
-  }
-
-  @Override
-  public Long getId() {
-    return getVesselId();
   }
 
 }

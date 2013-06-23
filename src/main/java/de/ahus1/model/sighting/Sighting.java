@@ -16,7 +16,6 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 
 import de.ahus1.model.general.AbstractEntity;
-import de.ahus1.model.general.HasId;
 
 /**
  * This olds information about sightings. Sample vessles are "Space Shuttle", or
@@ -27,7 +26,7 @@ import de.ahus1.model.general.HasId;
  */
 @XmlRootElement
 @Entity
-public class Sighting extends AbstractEntity implements HasId {
+public class Sighting extends AbstractEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -80,11 +79,6 @@ public class Sighting extends AbstractEntity implements HasId {
 
   public void setVessel(Vessel vessel) {
     this.vessel = vessel;
-  }
-
-  @Override
-  public Object getId() {
-    return getSightingId();
   }
 
   public DateTimeZone getSightingTimezone() {

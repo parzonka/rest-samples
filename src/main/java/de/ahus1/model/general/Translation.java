@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @Entity
-public class Translation extends AbstractEntity implements HasId {
+public class Translation extends AbstractEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -58,7 +58,4 @@ public class Translation extends AbstractEntity implements HasId {
     this.texts = texts;
   }
 
-  public Long getId() {
-    return getTranslationId();
-  }
 }

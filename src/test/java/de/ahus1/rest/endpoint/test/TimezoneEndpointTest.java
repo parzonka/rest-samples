@@ -18,7 +18,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import de.ahus1.model.general.AbstractEntity;
-import de.ahus1.model.general.HasId;
 import de.ahus1.model.general.HasVersion;
 import de.ahus1.model.general.IdView;
 import de.ahus1.model.sighting.Timezone;
@@ -59,7 +58,6 @@ public class TimezoneEndpointTest {
         .addClass(Timezone.class)
         .addClass(AbstractEntity.class)
         .addClass(AbstractEntity.Extended.class)
-        .addClass(HasId.class)
         .addClass(IdView.class)
         .addClass(HasVersion.class)
         .addClass(Resources.class)

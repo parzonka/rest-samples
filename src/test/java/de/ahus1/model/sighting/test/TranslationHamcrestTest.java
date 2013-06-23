@@ -25,7 +25,7 @@ public class TranslationHamcrestTest {
     Long l = new Long(1);
     s.setTranslationId(l);
     assertThat("getId() returns the value set with setTranslationId()",
-        s.getId(), equalTo(l));
+        s.getTranslationId(), equalTo(l));
   }
 }
 // END SNIPPET junithamcrest2
