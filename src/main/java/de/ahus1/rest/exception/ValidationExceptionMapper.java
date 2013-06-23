@@ -23,7 +23,7 @@ public class ValidationExceptionMapper implements
   public Response toResponse(ValidationException exception) {
     Map<String, String> responseObj = new HashMap<String, String>();
 
-    responseObj.put("general", exception.getMessage());
+    responseObj.put("message", exception.getMessage());
 
     return Response.status(Response.Status.BAD_REQUEST).entity(responseObj)
         .build();

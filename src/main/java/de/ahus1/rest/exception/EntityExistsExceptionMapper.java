@@ -35,7 +35,7 @@ public class EntityExistsExceptionMapper implements
   public Response toResponse(EntityExistsException exception) {
     Map<String, String> responseObj = new HashMap<String, String>();
 
-    responseObj.put("general", localizer.localize("error.entityExists"));
+    responseObj.put("message", localizer.localize("error.entityExists"));
 
     return Response.status(Response.Status.CONFLICT).entity(responseObj)
         .build();

@@ -35,7 +35,7 @@ public class EntityNotFoundExceptionMapper implements
   public Response toResponse(EntityNotFoundException exception) {
     Map<String, String> responseObj = new HashMap<String, String>();
 
-    responseObj.put("general", localizer.localize("error.entityNotFound"));
+    responseObj.put("message", localizer.localize("error.entityNotFound"));
 
     return Response.status(Response.Status.NOT_FOUND).entity(responseObj)
         .build();

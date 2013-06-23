@@ -32,7 +32,7 @@ public class GeneralExceptionMapper implements ExceptionMapper<Exception> {
   public Response toResponse(Exception exception) {
     Map<String, String> responseObj = new HashMap<String, String>();
     // TODO: I18N
-    responseObj.put("general", exception.getLocalizedMessage());
+    responseObj.put("message", exception.getLocalizedMessage());
 
     log.log(Level.SEVERE, "can't analyze", exception);
 

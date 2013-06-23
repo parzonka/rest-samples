@@ -58,7 +58,7 @@ public class PersistenceExceptionHandler implements
       log.log(Level.SEVERE, "can't analyze", exception);
     }
 
-    responseObj.put("general", localizer.localize(message));
+    responseObj.put("message", localizer.localize(message));
 
     return Response.status(status).entity(responseObj).build();
   }
