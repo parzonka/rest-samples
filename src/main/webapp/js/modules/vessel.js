@@ -3,8 +3,10 @@ define(
     function(ko, $, mapping, hasher, crossroads, menu) {
 
       function toViewModel(data) {
+        // create a plain copy
         data = jQuery.extend(true, {}, data);
 
+        // transform the map of translations to a list of translations
         var text = [];
         $.each(data.vesselName, function(key, value) {
           text.push({
@@ -18,8 +20,10 @@ define(
       }
 
       function fromViewModel(data) {
+        // create a plain copy
         data = jQuery.extend(true, {}, data);
 
+        // transform the list of translations to a map of translations
         var text = {};
         data.vesselName.forEach(function(element) {
           text[element.textLanguage] = element.textString;
@@ -99,10 +103,10 @@ define(
         };
 
         self.menu = [ {
-          name : 'Schiffstyp suchen/pflegen',
+          name : ko.i18n('vessel:vessel.searchEdit'),
           link : '#/vessel/main'
         }, {
-          name : 'Neuer Schiffstyp',
+          name : ko.i18n('vessel:vessel.new.title'),
           link : '#/vessel/add'
         } ];
 

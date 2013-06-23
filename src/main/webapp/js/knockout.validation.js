@@ -1,6 +1,7 @@
 define([ "knockout", "jquery" ], function(ko, $) {
 
   // this has been inspired by knockout validation
+  // https://github.com/Knockout-Contrib/Knockout-Validation
 
   ko.bindingHandlers['validationCore'] = (function() {
 
@@ -171,6 +172,6 @@ define([ "knockout", "jquery" ], function(ko, $) {
         }
       }
     }
-  }
+  };
 
 });

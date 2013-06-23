@@ -1,10 +1,7 @@
 package de.ahus1.rest.sighting;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
@@ -41,14 +38,6 @@ public class SightingEndpoint extends DefaultRestEndpoint<Sighting> {
   @JsonView(Sighting.Extended.class)
   public Response findById(@PathParam("id") String id, @Context Request request) {
     return super.findById(id, request);
-  }
-
-  @Override
-  @POST
-  @Path("/qbe")
-  @JsonView(Sighting.Extended.class)
-  public List<Sighting> queryByExample(Sighting entity) {
-    return super.queryByExample(entity);
   }
 
   @Override

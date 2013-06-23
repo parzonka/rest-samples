@@ -21,31 +21,39 @@ define([ 'knockout', 'jquery', 'mapping', 'hasher', 'crossroads', 'menu',
     });
 
     function toViewModel(data) {
+      // create a plain copy
       data = jQuery.extend(true, {}, data);
 
       if (data.vessel) {
+        // set the vessel as initial element of the list of values
         self.vessels([ data.vessel ]);
+        // keep only the ID in the view model
         data.vessel = data.vessel.vesselId;
       }
 
       if (data.timezone) {
+        // set the time zone as the initial element of the list of values
         self.timezones([ {
           timezoneName : data.sightingTimezone
         } ]);
       }
 
+      // get full list of vessels and time zones
       $.getJSON("rest/vessel", function(data) {
         self.vessels(data);
       });
       $.getJSON("rest/timezone", function(data) {
         self.timezones(data);
       });
+      
       return data;
     }
 
     function fromViewModel(data) {
+      // create a plain copy
       data = jQuery.extend(true, {}, data);
 
+      // use the ID to re-create a full object
       if (data.vessel) {
         data.vessel = {
           vesselId : data.vessel
@@ -53,15 +61,6 @@ define([ 'knockout', 'jquery', 'mapping', 'hasher', 'crossroads', 'menu',
       }
 
       return data;
-    }
-
-    function isEmptyObject(obj) {
-      for ( var prop in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-          return false;
-        }
-      }
-      return true;
     }
 
     function _trimSearch(data) {

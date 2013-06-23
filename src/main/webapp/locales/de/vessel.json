@@ -2,6 +2,7 @@
 	"vessel":{
 		"new":{"title":"Neuer Schiffstyp"},
 		"edit":{"title":"Schiffstyp bearbeiten"},
+		"searchEdit":"Schiffstyp suchen/pflegen",
 		"name":"Name",
 		"heading":"Schiffstypen pflegen",
 		"list":"Schiffstypen"

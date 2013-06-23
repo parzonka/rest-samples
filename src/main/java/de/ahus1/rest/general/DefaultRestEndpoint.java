@@ -157,6 +157,7 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
   @SuppressWarnings("unchecked")
   @POST
   @Path("/qbe")
+  @JsonView(ListView.class)
   public List<ENTITY> queryByExample(ENTITY entity) {
     // START SNIPPET: hibernatebasic3
     Session session = (Session) em.getDelegate();
@@ -209,7 +210,7 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
    *          primary key
    * @param request
    *          context for this request
-   * @return the Entity, 302 if not modified
+   * @return the Entity
    */
   @GET
   @Path("/{id:.+}")
@@ -502,8 +503,8 @@ public abstract class DefaultRestEndpoint<ENTITY extends HasId> {
    * Save a given entity.
    * 
    * @param entity
-   *          payload to be saved; IDs must match!
-   * @return the entity that has been saved
+   *          payload to be created
+   * @return a link to the entity that has been saved
    */
   @POST
   @Path("")

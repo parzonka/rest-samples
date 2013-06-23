@@ -2,6 +2,7 @@
 	"vessel":{
 		"new":{"title":"New Vesseltype"},
 		"edit":{"title":"Edit Vesseltype"},
+		"searchEdit":"Vesseltypes search/edit",
 		"name":"Name",
 		"heading":"Maintain Vesseltypes",
 		"list":"Vesseltypes"
