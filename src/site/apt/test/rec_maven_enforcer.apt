@@ -1,0 +1,46 @@
+    ------
+    Maven Enforcer
+    ------
+    Alexander Schwartz
+    ------
+    27 May 2013
+
+Maven Enforcer
+
+%{toc|fromDepth=2}
+
+* What is Maven Enforcer?
+
+    The Maven Enforcer Plugin gives you the chance by adding simple Java classes to verify your build.
+    If the verification fails, you build fails as well.
+
+* Why you should use it
+
+** If you need access to you maven project settings
+
+    A lot of tests can be implemented as JUnit tests as well. But implementing it as a Enforcer rules will provide
+    you with access to all the information of the Maven project.
+
+* How to use it
+
+** Update your pom.xml file
+
+    Please some dependencies to your project's <<<pom.xml>>>. This will include a custom enforcer to prevent cycles
+    between classes in your project.
+
+%{snippet|id=mavenenforcer1|url=file:pom.xml}
+
+* Where to learn more about it
+
+    Visit the discussion on Stackoverflow {{http://stackoverflow.com/questions/3416547/maven-jdepend-fail-build-with-cycles}} to find out more
+    and visit the plugin page on Github {{https://github.com/andrena/no-package-cycles-enforcer-rule}}.
+
+
+* Tips and Tricks
+
+    There are already quite a number of standard rules that can be either used or extended for your own purposes
+    here {{http://maven.apache.org/enforcer/enforcer-rules/index.html}}.
+
+    If you want to enforce other things like package dependencies, you might want to have a look at {{https://github.com/andrena/macker}}.
+
+

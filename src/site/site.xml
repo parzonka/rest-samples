@@ -43,6 +43,7 @@
         <item name="Basic JUnit Testing" href="test/rec_junit_basic.html" />
         <item name="Using Hamcrest Matchers" href="test/rec_junit_hamcrest.html" />
         <item name="Basic Arquillian Testing" href="test/rec_arquillian_basic.html" />
+        <item name="Maven Enforcer" href="test/rec_maven_enforcer.html" />
       </item>
       <item name="JavaScript Testing" href="test/index_javascript.html"
         collapse="true">
