@@ -16,6 +16,7 @@ import org.codehaus.jackson.map.module.SimpleModule;
 import org.joda.time.DateTimeZone;
 
 import de.ahus1.model.general.Translation;
+import de.ahus1.util.LocaleCookieWrapper;
 
 /**
  * Custom object mapper. Main use: serialize BigDecimal as a string (to avoid
@@ -32,7 +33,8 @@ public class CustomObjectMapper implements ContextResolver<ObjectMapper> {
   @Override
   public ObjectMapper getContext(Class<?> type) {
     final ObjectMapper result = new ObjectMapper();
-    Enumeration<Locale> languages = httpServletRequest.getLocales();
+    Enumeration<Locale> languages = new LocaleCookieWrapper(httpServletRequest)
+        .getLocales();
 
     SimpleModule module = new SimpleModule(getClass().getName(), new Version(1,
         0, 0, null))

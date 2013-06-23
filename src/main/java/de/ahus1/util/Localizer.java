@@ -28,7 +28,7 @@ public class Localizer {
   public String localize(String key) {
     try {
       ResourceBundle rb = ResourceBundle.getBundle("messages",
-          httpServletRequest.getLocale());
+          new LocaleCookieWrapper(httpServletRequest).getLocale());
       return rb.getString(key);
     } catch (MissingResourceException e) {
       return "{" + key + "}";
