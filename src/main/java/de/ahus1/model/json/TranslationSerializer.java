@@ -50,6 +50,7 @@ public class TranslationSerializer extends JsonSerializer<Translation> {
   @Override
   public void serialize(Translation value, JsonGenerator jgen,
       SerializerProvider provider) throws IOException {
+    // find out if we should should extended translation information
     if (provider.getSerializationView() != null
         && !Translation.Extended.class.isAssignableFrom(provider
             .getSerializationView())) {
