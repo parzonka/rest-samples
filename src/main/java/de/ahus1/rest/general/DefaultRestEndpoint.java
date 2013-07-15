@@ -89,7 +89,14 @@ public abstract class DefaultRestEndpoint<ENTITY> {
   private Class<?> keyClass;
 
   /**
-   * Get information about parameterized types.
+   * The class of the type argument is derived at runtime if the following
+   * constraints are met:
+   * <ul>
+   * <li>the type argument is set in first subtype of DefaultRestEndpoint
+   * <li>the type argument is not a generic type
+   * </ul>
+   * If a constraint is not met, it is necessary to pass the class of the type
+   * argument to the constructor.
    */
   @SuppressWarnings("unchecked")
   public DefaultRestEndpoint() {
@@ -99,6 +106,18 @@ public abstract class DefaultRestEndpoint<ENTITY> {
     }
     ParameterizedType myself = (ParameterizedType) c.getGenericSuperclass();
     this.entityClass = (Class<ENTITY>) myself.getActualTypeArguments()[0];
+  }
+
+  /**
+   * Instantiation by passing the class of the entity type allows sound and
+   * arbitrary endpoint hierarchies and generic entity types.
+   * 
+   * @param entityClass
+   *          the class of the entity type
+   */
+  @SuppressWarnings("unchecked")
+  public DefaultRestEndpoint(Class<?> entityClass) {
+    this.entityClass = (Class<ENTITY>) entityClass;
   }
 
   /**
