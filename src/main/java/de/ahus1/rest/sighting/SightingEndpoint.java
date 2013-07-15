@@ -14,7 +14,6 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
 import de.ahus1.model.sighting.Sighting;
-import de.ahus1.rest.general.DefaultRestEndpoint;
 
 /**
  * JAX-RS Example This class produces a RESTful service to read the contents of
@@ -25,7 +24,11 @@ import de.ahus1.rest.general.DefaultRestEndpoint;
  */
 @Stateless
 @Path("/sighting")
-public class SightingEndpoint extends DefaultRestEndpoint<Sighting> {
+public class SightingEndpoint extends DummyIntermediateEndpoint<Sighting> {
+
+  public SightingEndpoint() {
+    super(Sighting.class);
+  }
 
   @Override
   protected Class<?> getExtendedView() {
